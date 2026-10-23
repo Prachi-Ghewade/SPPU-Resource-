@@ -1,0 +1,1138 @@
+
+/* =========================================
+   1. GLOBAL STYLES
+========================================= */
+
+:root {
+    --primary: #6d4aff;
+    --primary-dark: #5535e8;
+    --primary-light: #f1edff;
+
+    --bg: #faf9fc;
+    --surface: #ffffff;
+
+    --text: #27243a;
+    --muted: #858196;
+    --border: #ebe8f2;
+
+    --shadow: 0 4px 20px rgba(43, 30, 84, 0.045);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Inter, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   2. MAIN APP LAYOUT
+   Sidebar fixed on the left
+   Main content starts beside the sidebar
+========================================= */
+
+.app-layout {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100;
+
+    width: 258px;
+    height: 100vh;
+    padding: 25px 17px 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+
+    overflow-y: auto;
+}
+
+.exam-main {
+    min-width: 0;
+    min-height: 100vh;
+
+    margin-left: 258px;
+    width: calc(100% - 258px);
+
+    padding: 0 42px 32px;
+
+    color: var(--text);
+    background: var(--bg);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   3. SIDEBAR BRAND
+========================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 7px;
+    margin-bottom: 36px;
+
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+    background: var(--primary);
+    color: white;
+
+    font-size: 21px;
+}
+
+.brand-light {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+
+/* =========================================
+   4. SIDEBAR NAVIGATION
+========================================= */
+
+.sidebar-label {
+    padding: 0 11px;
+    margin-bottom: 10px;
+
+    color: #a09bac;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.secondary-label {
+    margin-top: 27px;
+}
+
+.sidebar-nav {
+    display: grid;
+    gap: 5px;
+}
+
+.nav-link {
+    min-height: 44px;
+    padding: 10px 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border-radius: 9px;
+
+    color: #716d80;
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link > span {
+    width: 20px;
+    flex-shrink: 0;
+
+    text-align: center;
+    font-size: 19px;
+}
+
+.nav-link:hover {
+    background: #f7f5ff;
+    color: var(--primary);
+}
+
+.nav-link.active {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 35px;
+}
+
+.sidebar-help {
+    display: flex;
+    gap: 11px;
+
+    padding: 14px 11px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.help-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 8px;
+
+    font-weight: 800;
+}
+
+.sidebar-help strong {
+    font-size: 11px;
+}
+
+.sidebar-help p {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.admin-link {
+    display: block;
+    padding: 18px 8px 4px;
+
+    color: var(--muted);
+    font-size: 10px;
+}
+
+
+/* =========================================
+   5. PAGE HEADER
+========================================= */
+
+.exam-page-header {
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.exam-page-heading {
+    min-width: 0;
+}
+
+.exam-breadcrumb {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.exam-page-header h1 {
+    margin-top: 3px;
+
+    font-size: 22px;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+}
+
+.exam-page-description {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.exam-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* =========================================
+   6. BUTTONS
+========================================= */
+
+.exam-button {
+    min-height: 42px;
+    padding: 10px 17px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: background 0.2s, transform 0.2s;
+}
+
+.exam-button-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.exam-button-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.exam-button-secondary {
+    background: white;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.exam-button-secondary:hover {
+    background: var(--primary-light);
+    border-color: #d8ceff;
+    color: var(--primary);
+}
+
+
+/* =========================================
+   7. EXAM PREPARATION HERO
+========================================= */
+
+.exam-hero {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+
+    min-height: 240px;
+    margin-top: 28px;
+    padding: 32px 36px;
+
+    overflow: hidden;
+
+    border: 1px solid #e8e0ff;
+    border-radius: 20px;
+
+    background: linear-gradient(
+        115deg,
+        #f1edff 0%,
+        #faf8ff 58%,
+        #f4f0ff 100%
+    );
+}
+
+.exam-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+}
+
+.exam-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.exam-hero h2 {
+    max-width: 580px;
+
+    font-size: clamp(25px, 3vw, 36px);
+    line-height: 1.25;
+    letter-spacing: -1px;
+}
+
+.exam-hero p {
+    max-width: 520px;
+    margin-top: 12px;
+
+    color: #777188;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.exam-hero .exam-button {
+    margin-top: 20px;
+}
+
+.exam-hero-decoration {
+    width: 145px;
+    height: 145px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(109, 74, 255, 0.12);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    color: var(--primary);
+    font-size: 64px;
+}
+
+
+/* =========================================
+   8. GENERAL SECTIONS
+========================================= */
+
+.exam-section {
+    margin-top: 32px;
+}
+
+.exam-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 18px;
+}
+
+.exam-section-heading h2 {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+}
+
+.exam-section-heading p {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+
+/* =====================================
+   EXAM FILTERS — SINGLE HORIZONTAL ROW
+===================================== */
+
+#examSearchForm.exam-filter-panel {
+    display: grid;
+    grid-template-columns:
+        minmax(210px, 1.4fr)
+        minmax(0, 3fr)
+        auto;
+    grid-template-rows: auto;
+    align-items: end;
+    gap: 16px;
+    padding: 22px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ebe8f2;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(43, 30, 84, 0.045);
+}
+
+/* Search label and input share one column */
+#examSearchForm .exam-search-label {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin: 0 0 7px;
+    color: #514d63;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Put the search input under its label */
+#examSearchForm #examSearch {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    width: 100%;
+    min-width: 0;
+    height: 43px;
+    margin-top: 27px;
+    padding: 0 12px;
+    border: 1px solid #ebe8f2;
+    border-radius: 9px;
+    background: #fdfcff;
+    color: #27243a;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+#examSearchForm #examSearch::placeholder {
+    color: #aaa5b7;
+}
+
+#examSearchForm #examSearch:focus,
+#examSearchForm select:focus {
+    outline: none;
+    border-color: #6d4aff;
+    box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.1);
+}
+
+/* Four dropdowns in one row */
+#examSearchForm .exam-filter-grid {
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: end;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* Each dropdown */
+#examSearchForm .exam-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+#examSearchForm .exam-field label {
+    color: #514d63;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#examSearchForm .exam-field select {
+    width: 100%;
+    min-width: 0;
+    height: 43px;
+    padding: 0 8px;
+    border: 1px solid #ebe8f2;
+    border-radius: 9px;
+    background: #fdfcff;
+    color: #27243a;
+    font-size: 11px;
+    box-sizing: border-box;
+}
+
+/* Action buttons stay to the right */
+#examSearchForm .exam-filter-actions {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    align-items: end;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+#examSearchForm .exam-filter-actions button {
+    height: 43px;
+    padding: 0 13px;
+    border: 1px solid #6d4aff;
+    border-radius: 9px;
+    background: #6d4aff;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#examSearchForm .exam-filter-actions .exam-primary-btn:hover {
+    background: #5535e8;
+    transform: translateY(-1px);
+}
+
+#examSearchForm .exam-filter-actions .exam-reset-btn {
+    border-color: #ebe8f2;
+    background: #ffffff;
+    color: #514d63;
+}
+
+#examSearchForm .exam-filter-actions .exam-reset-btn:hover {
+    background: #f1edff;
+    color: #6d4aff;
+}
+
+/* Medium screens: search on top, dropdowns below */
+@media (max-width: 1250px) {
+    #examSearchForm.exam-filter-panel {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    #examSearchForm .exam-search-label,
+    #examSearchForm #examSearch,
+    #examSearchForm .exam-filter-grid,
+    #examSearchForm .exam-filter-actions {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    #examSearchForm .exam-search-label {
+        margin-bottom: -9px;
+    }
+
+    #examSearchForm #examSearch {
+        margin-top: 0;
+    }
+
+    #examSearchForm .exam-filter-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Small screens */
+@media (max-width: 650px) {
+    #examSearchForm .exam-filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #examSearchForm .exam-filter-actions {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 380px) {
+    #examSearchForm .exam-filter-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   11. RESOURCE GRID
+========================================= */
+
+.exam-resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.exam-resource-card {
+    min-width: 0;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.exam-resource-card:hover {
+    transform: translateY(-3px);
+    border-color: #d3c8ff;
+    box-shadow: 0 9px 25px rgba(43, 30, 84, 0.08);
+}
+
+.exam-resource-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-bottom: 17px;
+}
+
+.exam-resource-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 22px;
+}
+
+.exam-resource-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+    background: #f1edff;
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.exam-resource-card h3 {
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.exam-resource-card p {
+    margin-top: 7px;
+
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.exam-resource-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    margin-top: 14px;
+}
+
+.exam-resource-meta span {
+    padding: 5px 8px;
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    background: #fcfbfe;
+    color: #716d80;
+
+    font-size: 10px;
+}
+
+.exam-resource-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-top: auto;
+    padding-top: 18px;
+}
+
+.exam-resource-footer a,
+.exam-resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.exam-resource-footer a:hover,
+.exam-resource-link:hover {
+    color: var(--primary-dark);
+}
+
+
+/* =========================================
+   12. EMPTY AND LOADING STATES
+========================================= */
+
+.exam-empty-state,
+.exam-loading-state {
+    padding: 45px 20px;
+
+    border: 1px dashed var(--border);
+    border-radius: 15px;
+
+    background: var(--surface);
+    text-align: center;
+}
+
+.exam-empty-state h3,
+.exam-loading-state h3 {
+    font-size: 15px;
+}
+
+.exam-empty-state p,
+.exam-loading-state p {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.exam-empty-icon {
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 0 auto 15px;
+
+    border-radius: 15px;
+    background: var(--primary-light);
+    color: var(--primary);
+
+    font-size: 25px;
+}
+
+
+/* =========================================
+   13. PAGINATION
+========================================= */
+
+.exam-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 28px;
+}
+
+.exam-pagination button {
+    min-width: 37px;
+    height: 37px;
+    padding: 0 10px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: white;
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+.exam-pagination button:hover,
+.exam-pagination button.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+
+/* =========================================
+   14. PAGE FOOTER
+========================================= */
+
+.exam-page-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 45px;
+    padding: 22px 0;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+    font-size: 10px;
+}
+
+
+/* =========================================
+   15. RESPONSIVE: TABLETS
+========================================= */
+
+@media (max-width: 1200px) {
+    .exam-main {
+        padding-right: 27px;
+        padding-left: 27px;
+    }
+
+    .exam-filter-panel {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .exam-resource-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .exam-hero {
+        padding: 28px;
+    }
+}
+
+
+/* =========================================
+   16. RESPONSIVE: MOBILE
+========================================= */
+
+@media (max-width: 760px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+
+        padding: 15px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+        margin-bottom: 17px;
+    }
+
+    .sidebar-label,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        gap: 6px;
+
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .nav-link {
+        flex-shrink: 0;
+        min-height: 39px;
+
+        padding: 8px 11px;
+        font-size: 11px;
+    }
+
+    .nav-link > span {
+        width: auto;
+        font-size: 15px;
+    }
+
+    .exam-main {
+        width: 100%;
+        min-height: auto;
+        margin-left: 0;
+        padding: 0 20px 25px !important;
+    }
+
+    .exam-page-header {
+        min-height: 75px;
+    }
+
+    .exam-page-header h1 {
+        font-size: 19px;
+    }
+
+    .exam-hero {
+        min-height: auto;
+        padding: 26px 23px;
+    }
+
+    .exam-hero h2 {
+        font-size: 27px;
+    }
+
+    .exam-hero-decoration {
+        width: 100px;
+        height: 100px;
+        font-size: 44px;
+    }
+
+    .exam-filter-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 17px;
+        gap: 13px;
+    }
+
+    .exam-resource-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .exam-results-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================
+   17. RESPONSIVE: SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+    .exam-main {
+        padding-right: 14px !important;
+        padding-left: 14px !important;
+    }
+
+    .exam-page-header {
+        gap: 10px;
+    }
+
+    .exam-page-header h1 {
+        font-size: 18px;
+    }
+
+    .exam-page-description {
+        font-size: 11px;
+    }
+
+    .exam-hero {
+        padding: 23px 20px;
+    }
+
+    .exam-hero-decoration {
+        display: none;
+    }
+
+    .exam-hero h2 {
+        font-size: 25px;
+    }
+
+    .exam-filter-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .exam-page-footer {
+        flex-direction: column;
+    }
+}
+
+
+/* ===== Exam filter layout refinement ===== */
+
+#examSearchForm {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.5fr)
+        repeat(2, minmax(150px, 1fr));
+    gap: 18px;
+    align-items: end;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #ebe8f2;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(43, 30, 84, 0.045);
+}
+
+/* Keep each field together */
+#examSearchForm .exam-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+#examSearchForm label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #514d63;
+}
+
+#examSearchForm input,
+#examSearchForm select {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid #ebe8f2;
+    border-radius: 9px;
+    background: #fdfcff;
+    color: #27243a;
+    font-size: 12px;
+    outline: none;
+}
+
+#examSearchForm input:focus,
+#examSearchForm select:focus {
+    border-color: #6d4aff;
+    box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.1);
+}
+
+/* Style form buttons */
+#examSearchForm button {
+    min-height: 42px;
+    padding: 0 17px;
+    border: 1px solid #6d4aff;
+    border-radius: 9px;
+    background: #6d4aff;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#examSearchForm button:hover {
+    background: #5535e8;
+}
+
+#examSearchForm button[type="reset"] {
+    background: #fff;
+    color: #514d63;
+    border-color: #ebe8f2;
+}
+
+#examSearchForm button[type="reset"]:hover {
+    background: #f1edff;
+    color: #6d4aff;
+}
+
+/* Medium screens */
+@media (max-width: 1050px) {
+    #examSearchForm {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+    #examSearchForm {
+        grid-template-columns: 1fr;
+        padding: 17px;
+    }
+}

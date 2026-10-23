@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Resource Portal</title>
+  <link rel="stylesheet" href="account style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Student Resource Portal</h1>
+      <p>Learn, save and manage study materials</p>
+    </div>
+    <nav>
+      <button class="nav-btn active" data-view="studentView">Student</button>
+      <button class="nav-btn" data-view="adminView">Admin Panel</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="studentView" class="view">
+      <div class="grid two">
+        <article class="card">
+          <h2>Student Account</h2>
+          <p class="muted">Demo registration and login. Use any name and email.</p>
+          <form id="accountForm">
+            <label for="studentName">Full name</label>
+            <input id="studentName" required placeholder="Enter your name">
+            <label for="studentEmail">Email address</label>
+            <input id="studentEmail" type="email" required placeholder="student@example.com">
+            <div class="actions">
+              <button type="submit" id="loginBtn">Create / Sign in</button>
+              <button type="button" class="secondary" id="logoutBtn">Sign out</button>
+            </div>
+          </form>
+          <div id="accountStatus" class="status" aria-live="polite">You are signed out.</div>
+          <div id="profileBox" class="profile hidden"></div>
+        </article>
+
+        <article class="card">
+          <h2>Find Learning Resources</h2>
+          <label for="searchInput">Search by title or subject</label>
+          <input id="searchInput" placeholder="e.g. HTML, SQL, Python">
+          <label for="categoryFilter">Filter by category</label>
+          <select id="categoryFilter">
+            <option value="All">All categories</option>
+            <option>HTML</option><option>CSS</option><option>JavaScript</option>
+            <option>Python</option><option>SQL</option><option>Other</option>
+          </select>
+          <p class="muted small">Choose “Save resource” to add an item to your saved list.</p>
+        </article>
+      </div>
+
+      <section class="section">
+        <div class="section-heading">
+          <div><h2>Available Resources</h2><p class="muted">Study notes and useful links</p></div>
+          <span id="resourceCount" class="pill">0 resources</span>
+        </div>
+        <div id="resourceList" class="grid three"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <div><h2>My Saved Resources</h2><p class="muted">Your saved items stay in this browser.</p></div>
+          <span id="savedCount" class="pill">0 saved</span>
+        </div>
+        <div id="savedList" class="grid three"></div>
+      </section>
+    </section>
+
+    <section id="adminView" class="view hidden">
+      <div class="notice">
+        <strong>Demo admin panel:</strong> This is only a frontend learning example. The admin screen is not protected by real authentication.
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <h2 id="formTitle">Add a Resource</h2>
+          <form id="resourceForm">
+            <input id="resourceId" type="hidden">
+            <label for="resourceTitle">Resource title</label>
+            <input id="resourceTitle" required placeholder="e.g. HTML Basics Notes">
+            <label for="resourceCategory">Category</label>
+            <select id="resourceCategory" required>
+              <option value="">Select category</option>
+              <option>HTML</option><option>CSS</option><option>JavaScript</option>
+              <option>Python</option><option>SQL</option><option>Other</option>
+            </select>
+            <label for="resourceDescription">Description</label>
+            <textarea id="resourceDescription" rows="3" required placeholder="What will students learn?"></textarea>
+            <label for="resourceUrl">Resource URL (optional)</label>
+            <input id="resourceUrl" type="url" placeholder="https://example.com/notes">
+            <div class="actions">
+              <button type="submit" id="saveResourceBtn">Add Resource</button>
+              <button type="button" class="secondary" id="cancelEditBtn">Clear</button>
+            </div>
+          </form>
+        </article>
+        <article class="card">
+          <h2>Dashboard Summary</h2>
+          <div class="stats">
+            <div class="stat"><span id="totalResources">0</span><small>Total resources</small></div>
+            <div class="stat"><span id="totalSaved">0</span><small>Saved items</small></div>
+          </div>
+          <h3>Content management checklist</h3>
+          <ul class="checklist">
+            <li>Add learning material</li><li>Edit incorrect information</li>
+            <li>Delete outdated resources</li><li>Keep titles and descriptions clear</li>
+          </ul>
+        </article>
+      </div>
+
+      <section class="section">
+        <h2>Manage Resources</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Title</th><th>Category</th><th>Description</th><th>Actions</th></tr></thead>
+            <tbody id="adminResourceTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer><p>Student Resource Portal · HTML, CSS and JavaScript practice project</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>

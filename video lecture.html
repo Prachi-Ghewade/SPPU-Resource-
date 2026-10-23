@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Lectures | SPPU Resource Hub</title>
+    <link rel="stylesheet" href="video lecture.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="video-lectures.js" defer></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <span class="brand-logo">S</span>
+            <span>SPPU Resource Hub</span>
+        </a>
+
+        <p class="sidebar-label">WORKSPACE</p>
+        <nav class="sidebar-nav">
+            <a href="index.html"><span class="nav-icon">⌂</span>Home / Dashboard</a>
+            <a href="subjects.html"><span class="nav-icon">▤</span>Subjects &amp; Syllabus</a>
+            <a href="notes.html"><span class="nav-icon">▧</span>Notes &amp; Materials</a>
+            <a href="pyq.html"><span class="nav-icon">▤</span>Previous Year Papers</a>
+            <a href="video-lectures.html" class="active" aria-current="page">
+                <span class="nav-icon">▷</span>Video Lectures
+            </a>
+            <a href="practicals.html"><span class="nav-icon">⌘</span>Practicals &amp; Programming
+            </a>
+            <a href="exam-preparation.html"><span class="nav-icon">✓</span>Exam Preparation</a>
+        </nav>
+
+        <p class="sidebar-label">PERSONAL</p>
+        <nav class="sidebar-nav">
+            <a href="saved-resources.html"><span class="nav-icon">♡</span>Saved Resources</a>
+            <a href="student-account.html"><span class="nav-icon">◉</span>Student Account</a>
+            <a href="admin.html"><span class="nav-icon">⚙</span>Admin Panel</a>
+        </nav>
+
+        <div class="sidebar-note">
+            <strong>✦ Study smarter</strong>
+            <p>Your learning resources, all in one place.</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">LEARNING LIBRARY</p>
+                <h1>Video Lectures</h1>
+                <p class="page-subtitle">
+                    Learn concepts, one lecture at a time.
+                </p>
+            </div>
+            <span class="header-tag">SPPU · Computer Engineering</span>
+        </header>
+
+        <section class="welcome-banner">
+            <div class="welcome-copy">
+                <span class="banner-label">YOUR LEARNING SPACE</span>
+                <h2>Understand more. Learn at your pace.</h2>
+                <p>Find video lectures for your subjects, semesters and units.</p>
+            </div>
+            <div class="banner-play" aria-hidden="true">▶</div>
+        </section>
+
+        <section class="library-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Explore video library</h2>
+                    <p>Search verified lectures from your resource database.</p>
+                </div>
+                <span id="resource-count" class="resource-count">Loading…</span>
+            </div>
+
+            <div class="search-box">
+                <span aria-hidden="true">⌕</span>
+                <input
+                    id="lecture-search"
+                    type="search"
+                    placeholder="Search lectures, subjects or topics..."
+                    aria-label="Search video lectures">
+                <button id="clear-search" type="button">Clear</button>
+            </div>
+
+            <div class="filters">
+                <label>
+                    Engineering year
+                    <select id="year-filter">
+                        <option value="">All years</option>
+                    </select>
+                </label>
+                <label>
+                    Semester
+                    <select id="semester-filter">
+                        <option value="">All semesters</option>
+                    </select>
+                </label>
+                <label>
+                    Subject
+                    <select id="subject-filter">
+                        <option value="">All subjects</option>
+                    </select>
+                </label>
+                <label>
+                    Unit
+                    <select id="unit-filter">
+                        <option value="">All units</option>
+                    </select>
+                </label>
+                <button id="reset-filters" class="reset-button" type="button">
+                    Reset filters
+                </button>
+            </div>
+
+            <div class="results-heading">
+                <h2>Available lectures</h2>
+                <label class="sort-control">
+                    Sort by
+                    <select id="sort-filter">
+                        <option value="title">Title A–Z</option>
+                        <option value="subject">Subject</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="status-message" class="status-message" role="status">
+                Loading verified video lectures…
+            </div>
+
+            <div id="video-grid" class="video-grid"></div>
+        </section>
+
+        <footer class="page-footer">
+            SPPU Resource Hub · Learn, practise and grow.
+        </footer>
+    </main>
+
+    <!-- Video player dialog -->
+    <dialog id="video-dialog" class="video-dialog">
+        <div class="dialog-header">
+            <div>
+                <p class="eyebrow">NOW PLAYING</p>
+                <h2 id="dialog-title">Video lecture</h2>
+            </div>
+            <button id="close-dialog" class="close-dialog" type="button"
+                    aria-label="Close video player">✕</button>
+        </div>
+        <div id="player-container" class="player-container"></div>
+        <p id="player-note" class="player-note"></p>
+    </dialog>
+</body>
+</html>

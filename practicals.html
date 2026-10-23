@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practicals & Programming Lab | SPPU Resource Hub</title>
+
+    <link rel="stylesheet" href="video lecture.css">
+    <link rel="stylesheet" href="practicals.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="practicals.js" defer></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <span class="brand-logo">S</span>
+            <span>SPPU Resource Hub</span>
+        </a>
+
+        <p class="sidebar-label">WORKSPACE</p>
+        <nav class="sidebar-nav">
+            <a href="index.html"><span class="nav-icon">⌂</span>Home / Dashboard</a>
+            <a href="subjects.html"><span class="nav-icon">▤</span>Subjects &amp; Syllabus</a>
+            <a href="notes.html"><span class="nav-icon">▧</span>Notes &amp; Materials</a>
+            <a href="pyq.html"><span class="nav-icon">▤</span>Previous Year Papers</a>
+            <a href="video lecture.html"><span class="nav-icon">▷</span>Video Lectures</a>
+            <a href="practicals.html" class="active" aria-current="page">
+                <span class="nav-icon">⌘</span>Practicals &amp; Programming
+            </a>
+            <a href="exam preparation.html"><span class="nav-icon">✓</span>Exam Preparation</a>
+        </nav>
+
+        <p class="sidebar-label">PERSONAL</p>
+        <nav class="sidebar-nav">
+            <a href="saved-resources.html"><span class="nav-icon">♡</span>Saved Resources</a>
+            <a href="student-account.html"><span class="nav-icon">◉</span>Student Account</a>
+            <a href="admin.html"><span class="nav-icon">⚙</span>Admin Panel</a>
+        </nav>
+
+        <div class="sidebar-note">
+            <strong>✦ Learn by doing</strong>
+            <p>Practise concepts. Build your programming skills.</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">PRACTICE &amp; APPLY</p>
+                <h1>Practicals &amp; Programming Lab</h1>
+                <p class="page-subtitle">
+                    Find lab experiments, practical write-ups and programming resources.
+                </p>
+            </div>
+            <span class="header-tag">SPPU · Computer Engineering</span>
+        </header>
+
+        <section class="lab-banner">
+            <div>
+                <span class="banner-label">YOUR PRACTICE SPACE</span>
+                <h2>Learn the concept. Write the code. Test your skills.</h2>
+                <p>Explore practical resources relevant to your subjects and semester.</p>
+            </div>
+            <div class="lab-banner-icon" aria-hidden="true">⌘</div>
+        </section>
+
+        <section class="lab-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Explore lab resources</h2>
+                    <p>Browse verified practical and programming resources.</p>
+                </div>
+                <span id="resource-count" class="resource-count">Loading…</span>
+            </div>
+
+            <div class="search-box">
+                <span aria-hidden="true">⌕</span>
+                <input
+                    id="lab-search"
+                    type="search"
+                    placeholder="Search experiments, subjects or programs..."
+                    aria-label="Search lab resources">
+                <button id="clear-search" type="button">Clear</button>
+            </div>
+
+            <div class="filters lab-filters">
+                <label>
+                    Engineering year
+                    <select id="year-filter">
+                        <option value="">All years</option>
+                    </select>
+                </label>
+
+                <label>
+                    Semester
+                    <select id="semester-filter">
+                        <option value="">All semesters</option>
+                    </select>
+                </label>
+
+                <label>
+                    Subject
+                    <select id="subject-filter">
+                        <option value="">All subjects</option>
+                    </select>
+                </label>
+
+                <label>
+                    Unit
+                    <select id="unit-filter">
+                        <option value="">All units</option>
+                    </select>
+                </label>
+
+                <label>
+                    Resource type
+                    <select id="type-filter">
+                        <option value="">All lab resources</option>
+                    </select>
+                </label>
+
+                <button id="reset-filters" class="reset-button" type="button">
+                    Reset filters
+                </button>
+            </div>
+
+            <div class="results-heading">
+                <div>
+                    <h2>Lab resource library</h2>
+                    <p class="results-subtitle">Select a resource to open its original link.</p>
+                </div>
+
+                <label class="sort-control">
+                    Sort by
+                    <select id="sort-filter">
+                        <option value="title">Title A–Z</option>
+                        <option value="subject">Subject</option>
+                        <option value="type">Resource type</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="status-message" class="status-message" role="status">
+                Loading verified lab resources…
+            </div>
+
+            <div id="lab-grid" class="lab-grid"></div>
+        </section>
+
+        <footer class="page-footer">
+            SPPU Resource Hub · Learn, practise and grow.
+        </footer>
+    </main>
+</body>
+</html>

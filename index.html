@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU Resource Hub | Computer Engineering</title>
+    <meta name="description" content="Your central study resource hub for SPPU Computer Engineering students.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="index.html" class="brand">
+            <span class="brand-logo">S</span>
+            <span>SPPU<span class="brand-light"> Resource Hub</span></span>
+        </a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link active">
+                <span>⌂</span> Home / Dashboard
+            </a>
+            <a href="subjects.html" class="nav-link">
+                <span>▤</span> Subjects & Syllabus
+            </a>
+            <a href="notes.html" class="nav-link">
+                <span>▧</span> Notes & Study Materials
+            </a>
+            <a href="pyq.html" class="nav-link">
+                <span>▤</span> Previous Year Papers
+            </a>
+            <a href="video lecture.html" class="nav-link">
+                <span>▷</span> Video Lectures
+            </a>
+            <a href="practicals.html" class="nav-link">
+                <span>⌘</span> Practicals & Programming
+            </a>
+            <a href="exam preparation.html" class="nav-link">
+                <span>✓</span> Exam Preparation
+            </a>
+        </nav>
+
+        <div class="sidebar-label secondary-label">PERSONAL</div>
+
+        <nav class="sidebar-nav">
+            <a href="saved.html" class="nav-link">
+                <span>♡</span> Saved Resources
+            </a>
+            <a href="account.html" class="nav-link">
+                <span>◉</span> Student Account
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-help">
+                <div class="help-icon">?</div>
+                <div>
+                    <strong>Study smarter</strong>
+                    <p>Keep your learning resources organized.</p>
+                </div>
+            </div>
+            <a href="admin.html" class="admin-link">Admin & Content Management →</a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="breadcrumb">Workspace / Home</p>
+                <h2>Dashboard</h2>
+            </div>
+            <a href="account.html" class="profile-button">
+                <span class="avatar">S</span>
+                <span>Student</span>
+            </a>
+        </header>
+
+        <section class="welcome-section">
+            <div class="welcome-copy">
+                <span class="eyebrow">YOUR LEARNING WORKSPACE</span>
+                <h1>Everything you need to<br>prepare, in one place.</h1>
+                <p>
+                    Access your Computer Engineering study resources,
+                    explore subjects, and prepare for your exams.
+                </p>
+                <a href="exam-preparation.html" class="primary-button">
+                    Explore Exam Preparation <span>→</span>
+                </a>
+            </div>
+            <div class="welcome-illustration" aria-hidden="true">
+                <div class="illustration-circle">
+                    <div class="book book-back"></div>
+                    <div class="book book-front">
+                        <span>CE</span>
+                        <div></div><div></div><div></div>
+                    </div>
+                    <span class="floating-star star-one">✦</span>
+                    <span class="floating-star star-two">✧</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE DATABASE COUNTS -->
+        <section class="overview-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Your resource library</h2>
+                    <p>Overview of available verified resources</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-icon purple">▤</div>
+                    <p>Total resources</p>
+                    <h3 id="totalResources">—</h3>
+                    <span>Available in the library</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon blue">▷</div>
+                    <p>Video lectures</p>
+                    <h3 id="videoCount">—</h3>
+                    <span>Learning videos</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon orange">▧</div>
+                    <p>Study materials</p>
+                    <h3 id="notesCount">—</h3>
+                    <span>Notes and documents</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon green">⌘</div>
+                    <p>Practicals & labs</p>
+                    <h3 id="practicalCount">—</h3>
+                    <span>Lab and programming resources</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- QUICK ACCESS -->
+        <section class="quick-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Explore your resources</h2>
+                    <p>Choose what you want to study today.</p>
+                </div>
+            </div>
+
+            <div class="quick-grid">
+                <a href="subjects.html" class="quick-card">
+                    <div class="quick-icon lavender">▤</div>
+                    <div class="quick-card-text">
+                        <h3>Subjects & Syllabus</h3>
+                        <p>Browse subjects and syllabus details.</p>
+                    </div>
+                    <span class="card-arrow">↗</span>
+                </a>
+
+                <a href="notes.html" class="quick-card">
+                    <div class="quick-icon peach">▧</div>
+                    <div class="quick-card-text">
+                        <h3>Notes & Study Materials</h3>
+                        <p>Find learning notes and reference material.</p>
+                    </div>
+                    <span class="card-arrow">↗</span>
+                </a>
+
+                <a href="pyq.html" class="quick-card">
+                    <div class="quick-icon mint">▤</div>
+                    <div class="quick-card-text">
+                        <h3>Previous Year Papers</h3>
+                        <p>Practise with past exam papers.</p>
+                    </div>
+                    <span class="card-arrow">↗</span>
+                </a>
+
+                <a href="video lecture.html" class="quick-card">
+                    <div class="quick-icon sky">▷</div>
+                    <div class="quick-card-text">
+                        <h3>Video Lectures</h3>
+                        <p>Reinforce concepts through videos.</p>
+                    </div>
+                    <span class="card-arrow">↗</span>
+                </a>
+
+                <a href="practicals.html" class="quick-card">
+                    <div class="quick-icon lavender">⌘</div>
+                    <div class="quick-card-text">
+                        <h3>Practicals & Programming Lab</h3>
+                        <p>Explore practical and coding resources.</p>
+                    </div>
+                    <span class="card-arrow">↗</span>
+                </a>
+
+                <a href="exam-preparation.html" class="quick-card">
+                    <div class="quick-icon peach">✓</div>
+                    <div class="quick-card-text">
+                        <h3>Exam Preparation</h3>
+                        <p>Search and filter resources for revision.</p>
+                    </div>
+                    <span class="card-arrow">↗</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- RECENT RESOURCES FROM SUPABASE -->
+        <section class="recent-section">
+            <div class="section-heading recent-heading">
+                <div>
+                    <h2>Recently added resources</h2>
+                    <p>Resources available from your database</p>
+                </div>
+                <a href="exam-preparation.html" class="text-link">View all →</a>
+            </div>
+
+            <div id="recentResources" class="recent-list">
+                <div class="loading-state">Loading resources...</div>
+            </div>
+
+            <p id="databaseMessage" class="database-message" role="status"></p>
+        </section>
+
+        <footer class="page-footer">
+            <span>SPPU Resource Hub</span>
+            <span>Computer Engineering · Student Learning Workspace</span>
+        </footer>
+
+    </main>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+
+/* Practicals & Programming Lab */
+
+.lab-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 175px;
+    padding: 30px 34px;
+    border: 1px solid #e7ddff;
+    border-radius: 17px;
+    background: linear-gradient(115deg, #f0eaff, #fcfaff 75%, #eee7ff);
+}
+
+.lab-banner h2 {
+    max-width: 590px;
+    margin: 12px 0 9px;
+    color: #27324b;
+    font-size: clamp(21px, 2.5vw, 28px);
+    letter-spacing: -0.7px;
+    line-height: 1.35;
+}
+
+.lab-banner p {
+    margin: 0;
+    color: #77718e;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.lab-banner-icon {
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+    border: 1px solid #dfd1ff;
+    border-radius: 23px;
+    background: #fff;
+    color: #7047ff;
+    font-size: 35px;
+}
+
+.lab-section {
+    margin-top: 35px;
+}
+
+.lab-filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.results-subtitle {
+    margin: 7px 0 0;
+    color: #85849b;
+    font-size: 12px;
+}
+
+/* Resource cards */
+.lab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.lab-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 240px;
+    padding: 20px;
+    border: 1px solid #eae7f2;
+    border-radius: 14px;
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.lab-card:hover {
+    transform: translateY(-3px);
+    border-color: #d8ccff;
+    box-shadow: 0 12px 28px #2b1a500c;
+}
+
+.lab-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.lab-type-icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border: 1px solid #e7ddff;
+    border-radius: 12px;
+    background: #f2edff;
+    color: #7047ff;
+    font-size: 23px;
+}
+
+.lab-type-label {
+    display: inline-block;
+    max-width: 65%;
+    padding: 6px 9px;
+    border-radius: 7px;
+    background: #f2edff;
+    color: #7047d9;
+    font-size: 10px;
+    font-weight: 750;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.lab-card h3 {
+    margin: 18px 0 8px;
+    color: #27324b;
+    font-size: 15px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.lab-card-subject {
+    margin: 0;
+    color: #85849b;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.lab-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.lab-tags span {
+    padding: 5px 8px;
+    border: 1px solid #eeeaf6;
+    border-radius: 6px;
+    color: #77718e;
+    font-size: 10px;
+}
+
+.lab-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.lab-open-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 40px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: #7047ff;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lab-open-link:hover {
+    background: #5b35df;
+}
+
+@media (max-width: 1250px) {
+    .lab-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lab-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .lab-banner {
+        min-height: 0;
+        padding: 23px 18px;
+    }
+
+    .lab-banner-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 15px;
+        font-size: 24px;
+    }
+
+    .lab-grid,
+    .lab-filters {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .lab-card {
+        min-height: 220px;
+    }
+}
