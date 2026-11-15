@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>SPPU Resource Hub | Subjects & Syllabus</title>
+
+    <meta name="description"
+          content="Explore semester-wise subjects and syllabus for SPPU Computer Engineering.">
+
     <link rel="stylesheet" href="exam preparation.css">
     <link rel="stylesheet" href="subjects.css">
 </head>
@@ -24,6 +29,7 @@
         <div class="sidebar-label">WORKSPACE</div>
 
         <nav class="sidebar-nav">
+
             <a href="index.html" class="nav-link">
                 <span>⌂</span> Home / Dashboard
             </a>
@@ -51,11 +57,13 @@
             <a href="exam-preparation.html" class="nav-link">
                 <span>✓</span> Exam Preparation
             </a>
+
         </nav>
 
         <div class="sidebar-label secondary-label">PERSONAL</div>
 
         <nav class="sidebar-nav">
+
             <a href="saved.html" class="nav-link">
                 <span>♡</span> Saved Resources
             </a>
@@ -63,11 +71,14 @@
             <a href="account.html" class="nav-link">
                 <span>◉</span> Student Account
             </a>
+
         </nav>
 
         <div class="sidebar-bottom">
+
             <div class="sidebar-help">
                 <div class="help-icon">?</div>
+
                 <div>
                     <strong>Study smarter</strong>
                     <p>Keep your learning resources organized.</p>
@@ -77,27 +88,34 @@
             <a href="admin.html" class="admin-link">
                 Admin & Content Management →
             </a>
+
         </div>
 
     </aside>
 
+
     <!-- MAIN CONTENT -->
     <main class="exam-main">
 
+        <!-- PAGE HEADER -->
         <header class="exam-page-header">
+
             <div>
                 <p class="exam-breadcrumb">
                     Workspace / Subjects & Syllabus
                 </p>
+
                 <h1>Subjects & Syllabus</h1>
             </div>
 
             <div>
                 <span>Student</span>
             </div>
+
         </header>
 
-        <!-- HERO -->
+
+        <!-- HERO SECTION -->
         <section class="exam-hero">
 
             <div class="exam-hero-content">
@@ -106,7 +124,10 @@
                     YOUR LEARNING WORKSPACE
                 </span>
 
-                <h2>Explore your subjects.<br>Master every unit.</h2>
+                <h2>
+                    Explore your subjects.<br>
+                    Master every unit.
+                </h2>
 
                 <p>
                     Discover semester-wise subjects, explore complete
@@ -126,41 +147,68 @@
 
         </section>
 
-        <!-- FILTERS -->
+
+        <!-- SUBJECT FILTERS -->
         <section class="exam-section" id="subject-filters">
 
             <div class="exam-section-heading">
+
                 <div>
                     <h2>Find your subjects</h2>
-                    <p>Select your engineering year and semester.</p>
+
+                    <p>
+                        Search and filter subjects by engineering year
+                        and semester.
+                    </p>
                 </div>
+
             </div>
 
+
             <form class="exam-filter-panel" id="subjectSearchForm">
+
+                <label class="exam-search-label" for="subjectSearch">
+                    Search subjects
+                </label>
+
+                <input
+                    type="search"
+                    id="subjectSearch"
+                    placeholder="Search subject name or subject code..."
+                >
+
 
                 <div class="subject-filter-grid">
 
                     <div class="exam-field">
+
                         <label for="engineeringYear">
                             Engineering year
                         </label>
 
                         <select id="engineeringYear">
+
                             <option value="">All years</option>
                             <option value="FE">First Year</option>
                             <option value="SE">Second Year</option>
                             <option value="TE">Third Year</option>
                             <option value="BE">Final Year</option>
+
                         </select>
+
                     </div>
 
+
                     <div class="exam-field">
+
                         <label for="semester">
                             Semester
                         </label>
 
                         <select id="semester">
+
                             <option value="">All semesters</option>
+
                             <option value="1">Semester 1</option>
                             <option value="2">Semester 2</option>
                             <option value="3">Semester 3</option>
@@ -169,12 +217,16 @@
                             <option value="6">Semester 6</option>
                             <option value="7">Semester 7</option>
                             <option value="8">Semester 8</option>
+
                         </select>
+
                     </div>
 
                 </div>
 
+
                 <div class="exam-filter-actions">
+
                     <button type="submit"
                             class="exam-button exam-button-primary">
                         Apply filters →
@@ -184,37 +236,62 @@
                             class="exam-button exam-button-secondary">
                         Reset
                     </button>
+
                 </div>
 
             </form>
 
         </section>
 
+
         <!-- SUBJECT RESULTS -->
         <section class="exam-section">
 
             <div class="exam-section-heading">
+
                 <div>
                     <h2>Available subjects</h2>
-                    <p>Explore your subjects and their syllabus.</p>
+
+                    <p>
+                        Explore your subjects and their complete syllabus.
+                    </p>
                 </div>
 
                 <span class="exam-result-count" id="subjectCount">
                     0 subjects
                 </span>
+
             </div>
+
 
             <div id="subjectGrid" class="subject-grid"></div>
 
+
+            <!-- EMPTY STATE -->
             <div id="subjectEmptyState" class="exam-empty-state">
+
                 <div class="exam-empty-icon">▤</div>
 
-                <h3>No subjects added yet</h3>
+                <h3>No subjects available</h3>
 
                 <p>
-                    Subjects will appear here once they are added
-                    to the database.
+                    Subjects will appear here when they are added
+                    to your database.
                 </p>
+
+            </div>
+
+
+            <!-- ERROR MESSAGE -->
+            <div id="subjectError" class="exam-empty-state"
+                 style="display:none;">
+
+                <h3>Unable to load subjects</h3>
+
+                <p id="subjectErrorMessage">
+                    Please try again later.
+                </p>
+
             </div>
 
         </section>
@@ -223,7 +300,9 @@
 
 </div>
 
-<script src="subjects.js" defer></script>
+
+<!-- SUPABASE LIBRARY AND PAGE JAVASCRIPT -->
+<script type="module" src="subjects.js"></script>
 
 </body>
 </html>
