@@ -1,0 +1,139 @@
+
+/* NOTES PAGE FILTER STYLING */
+
+#notesSearchForm {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: end;
+    background: #ffffff;
+    border: 1px solid #e9e5f4;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(30, 20, 70, 0.03);
+}
+
+/* SEARCH LABEL */
+#notesSearchForm .exam-search-label {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 11px;
+    font-weight: 600;
+    color: #39415c;
+}
+
+/* SEARCH INPUT */
+#notesSearch {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: 38px;
+    border: 1px solid #e8e4f0;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 12px;
+    outline: none;
+    background: #fdfcff;
+}
+
+/* FILTER GRID */
+#notesSearchForm .exam-filter-grid {
+    display: contents;
+}
+
+#notesSearchForm .exam-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+#notesSearchForm .exam-field label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #39415c;
+}
+
+#notesSearchForm .exam-field select {
+    width: 100%;
+    height: 38px;
+    padding: 0 9px;
+    border: 1px solid #e8e4f0;
+    border-radius: 8px;
+    background: #fdfcff;
+    color: #30364c;
+    font-size: 11px;
+    outline: none;
+}
+
+/* FILTER ACTIONS */
+#notesSearchForm .exam-filter-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+/* BUTTONS */
+#notesSearchForm .exam-button {
+    height: 38px;
+    padding: 0 17px;
+    border-radius: 8px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#notesSearchForm .exam-button-primary {
+    background: #7048ff;
+    color: white;
+    border: 1px solid #7048ff;
+}
+
+#notesSearchForm .exam-button-secondary {
+    background: white;
+    color: #34364a;
+    border: 1px solid #e8e4f0;
+}
+
+/* FOCUS */
+#notesSearch:focus,
+#notesSearchForm .exam-field select:focus {
+    border-color: #7048ff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    #notesSearchForm {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #notesSearchForm .exam-search-label,
+    #notesSearch {
+        grid-column: 1 / -1;
+    }
+
+    #notesSearchForm .exam-search-label {
+        grid-row: auto;
+    }
+
+    #notesSearch {
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 550px) {
+    #notesSearchForm {
+        grid-template-columns: 1fr;
+    }
+
+    #notesSearchForm .exam-search-label,
+    #notesSearch,
+    #notesSearchForm .exam-filter-actions {
+        grid-column: 1;
+    }
+
+    #notesSearchForm .exam-filter-actions {
+        flex-wrap: wrap;
+    }
+}
