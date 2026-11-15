@@ -4,72 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPPU Resource Hub | Computer Engineering</title>
-    <meta name="description" content="Your central study resource hub for SPPU Computer Engineering students.">
-    <link rel="stylesheet" href="style.css">
+    <title>Previous Year Papers | SPPU Resource Hub</title>
+    <link rel="stylesheet" href="pyq.css">
 </head>
+
 <body>
 
-<div class="app-layout">
+<header class="navbar">
+    <div class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+            <h2>StudySpace</h2>
+            <span>SPPU Resource Hub</span>
+        </div>
+    </div>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <a href="index.html" class="brand">
-            <span class="brand-logo">S</span>
-            <span>SPPU<span class="brand-light"> Resource Hub</span></span>
-        </a>
+    <a href="index.html" class="home-link">← Back to Home</a>
+</header>
 
-        <div class="sidebar-label">WORKSPACE</div>
+<main class="page-container">
 
-        <nav class="sidebar-nav">
-            <a href="index.html" class="nav-link active">
-                <span>⌂</span> Home / Dashboard
-            </a>
-            <a href="subjects.html" class="nav-link">
-                <span>▤</span> Subjects & Syllabus
-            </a>
-            <a href="notes.html" class="nav-link">
-                <span>▧</span> Notes & Study Materials
-            </a>
-            <a href="pyq.html" class="nav-link">
-                <span>▤</span> Previous Year Papers
-            </a>
-            <a href="videos.html" class="nav-link">
-                <span>▷</span> Video Lectures
-            </a>
-            <a href="practicals.html" class="nav-link">
-                <span>⌘</span> Practicals & Programming
-            </a>
-            <a href="exam-preparation.html" class="nav-link">
-                <span>✓</span> Exam Preparation
-            </a>
-        </nav>
+    <section class="page-intro">
+        <p class="eyebrow">EXAM RESOURCES</p>
+        <h1>Previous Year Question Papers</h1>
+        <p>
+            Practice with previous SPPU question papers and prepare
+            confidently for your examinations.
+        </p>
+    </section>
 
-        <div class="sidebar-label secondary-label">PERSONAL</div>
+    <section class="search-section">
+        <div class="search-box">
+            <span>⌕</span>
+            <input
+                type="text"
+                id="pyq-search"
+                placeholder="Search papers by title, subject or year..."
+            >
+            <button id="clear-search">Clear</button>
+        </div>
+    </section>
 
-        <nav class="sidebar-nav">
-            <a href="saved.html" class="nav-link">
-                <span>♡</span> Saved Resources
-            </a>
-            <a href="account.html" class="nav-link">
-                <span>◉</span> Student Account
-            </a>
-        </nav>
+    <section class="content-layout">
 
-        <div class="sidebar-bottom">
-            <div class="sidebar-help">
-                <div class="help-icon">?</div>
+        <!-- LEFT SIDEBAR -->
+        <aside class="filter-sidebar">
+
+            <div class="filter-heading">
+                <h3>Filters</h3>
+                <button id="reset-filters">Reset</button>
+            </div>
+
+            <div class="filter-group">
+                <label for="subject-filter">Subject</label>
+                <select id="subject-filter">
+                    <option value="">All Subjects</option>
+                </select>
+            </div>
+
+            <div class="filter-note">
+                <p>Find question papers for your subjects using the search and filter options.</p>
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="resources-section">
+
+            <div class="results-header">
                 <div>
-                    <strong>Study smarter</strong>
-                    <p>Keep your learning resources organized.</p>
+                    <h2>Question Papers</h2>
+                    <p id="resource-count">Loading papers...</p>
+                </div>
+
+                <div class="sort-box">
+                    <label for="sort-filter">Sort by</label>
+                    <select id="sort-filter">
+                        <option value="latest">Latest first</option>
+                        <option value="title">Title A-Z</option>
+                        <option value="subject">Subject</option>
+                    </select>
                 </div>
             </div>
-            <a href="admin.html" class="admin-link">Admin & Content Management →</a>
-        </div>
-    </aside>
 
+            <p id="status-message" class="status-message">
+                Loading question papers...
+            </p>
 
+            <div id="pyq-grid" class="resource-grid"></div>
 
-<script type="module" src="script.js"></script>
+        </section>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 StudySpace | SPPU Resource Hub</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="pyq.js" defer></script>
+
 </body>
 </html>
