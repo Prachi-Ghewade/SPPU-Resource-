@@ -90,23 +90,11 @@ async function loadResources() {
     }
 
     // KEEP ONLY NOTE / STUDY MATERIAL TYPES
-    allResources = (data || []).filter(resource => {
+    console.log("All rows received:", data);
 
-        const type = String(resource.resource_type || "")
-            .toLowerCase()
-            .trim();
+allResources = data || [];
 
-        return (
-            type.includes("note") ||
-            type.includes("study material") ||
-            type.includes("textbook") ||
-            type.includes("reference book") ||
-            type.includes("lecture material") ||
-            type.includes("handout") ||
-            type.includes("ebook") ||
-            type.includes("e-book")
-        );
-    });
+console.log("Resources after filtering:", allResources);
 
     populateFilters();
     applyFilters();
