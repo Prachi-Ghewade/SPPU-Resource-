@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPPU Resource Hub | Notes & Study Materials</title>
+    <meta name="description" content="Find verified notes and study materials for SPPU Computer Engineering.">
+    <link rel="stylesheet" href="exam preparation.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <a href="index.html" class="brand">
+            <span class="brand-logo">S</span>
+            <span>SPPU<span class="brand-light"> Resource Hub</span></span>
+        </a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">
+                <span>⌂</span> Home / Dashboard
+            </a>
+
+            <a href="subjects.html" class="nav-link">
+                <span>▤</span> Subjects & Syllabus
+            </a>
+
+            <a href="notes.html" class="nav-link active">
+                <span>▧</span> Notes & Study Materials
+            </a>
+
+            <a href="pyq.html" class="nav-link">
+                <span>▤</span> Previous Year Papers
+            </a>
+
+            <a href="videos.html" class="nav-link">
+                <span>▷</span> Video Lectures
+            </a>
+
+            <a href="practicals.html" class="nav-link">
+                <span>⌘</span> Practicals & Programming
+            </a>
+
+            <a href="exam-preparation.html" class="nav-link">
+                <span>✓</span> Exam Preparation
+            </a>
+        </nav>
+
+        <div class="sidebar-label secondary-label">PERSONAL</div>
+
+        <nav class="sidebar-nav">
+            <a href="saved.html" class="nav-link">
+                <span>♡</span> Saved Resources
+            </a>
+
+            <a href="account.html" class="nav-link">
+                <span>◉</span> Student Account
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-help">
+                <div class="help-icon">?</div>
+                <div>
+                    <strong>Study smarter</strong>
+                    <p>Keep your learning resources organized.</p>
+                </div>
+            </div>
+
+            <a href="admin.html" class="admin-link">
+                Admin & Content Management →
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- NOTES MAIN CONTENT -->
+    <main class="exam-main">
+
+        <header class="exam-page-header">
+            <div>
+                <p class="exam-breadcrumb">
+                    Workspace / Notes & Study Materials
+                </p>
+                <h1>Notes & Study Materials</h1>
+            </div>
+
+            <div>
+                <span>Student</span>
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="exam-hero">
+
+            <div class="exam-hero-content">
+
+                <span class="exam-eyebrow">
+                    YOUR STUDY WORKSPACE
+                </span>
+
+                <h2>Learn better.<br>Stay prepared.</h2>
+
+                <p>
+                    Access subject-wise notes, study materials and
+                    reference resources for your SPPU Computer
+                    Engineering subjects.
+                </p>
+
+                <a href="#notes-filters" class="exam-button exam-button-primary">
+                    Explore study materials →
+                </a>
+
+            </div>
+
+            <div class="exam-hero-decoration" aria-hidden="true">
+                ▧
+            </div>
+
+        </section>
+
+        <!-- SEARCH AND FILTERS -->
+        <section class="exam-section" id="notes-filters">
+
+            <div class="exam-section-heading">
+                <div>
+                    <h2>Find your study materials</h2>
+                    <p>Filter by year, semester, subject and material type.</p>
+                </div>
+            </div>
+
+            <form class="exam-filter-panel" id="notesSearchForm">
+
+                <label class="exam-search-label" for="notesSearch">
+                    Search study materials
+                </label>
+
+                <input
+                    type="search"
+                    id="notesSearch"
+                    name="search"
+                    placeholder="Search subject, notes or keyword..."
+                >
+
+                <div class="exam-filter-grid">
+
+                    <div class="exam-field">
+                        <label for="notesYear">Engineering year</label>
+
+                        <select id="notesYear" name="year">
+                            <option value="">All years</option>
+                            <option value="FE">First Year</option>
+                            <option value="SE">Second Year</option>
+                            <option value="TE">Third Year</option>
+                            <option value="BE">Final Year</option>
+                        </select>
+                    </div>
+
+                    <div class="exam-field">
+                        <label for="notesSemester">Semester</label>
+
+                        <select id="notesSemester" name="semester">
+                            <option value="">All semesters</option>
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+
+                    <div class="exam-field">
+                        <label for="notesSubject">Subject</label>
+
+                        <select id="notesSubject" name="subject">
+                            <option value="">All subjects</option>
+                        </select>
+                    </div>
+
+                    <div class="exam-field">
+                        <label for="notesType">Material type</label>
+
+                        <select id="notesType" name="resource_type">
+                            <option value="">All types</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="exam-filter-actions">
+
+                    <button type="submit" class="exam-button exam-button-primary">
+                        Apply filters →
+                    </button>
+
+                    <button type="reset" class="exam-button exam-button-secondary">
+                        Reset
+                    </button>
+
+                </div>
+
+            </form>
+        </section>
+
+        <!-- RESOURCE RESULTS -->
+        <section class="exam-section exam-results-section">
+
+            <div class="exam-section-heading">
+                <div>
+                    <h2>Available study materials</h2>
+                    <p>Browse verified resources available in your study library.</p>
+                </div>
+
+                <span id="notesResultCount" class="exam-result-count">
+                    0 resources
+                </span>
+            </div>
+
+            <div id="notesResourceGrid" class="exam-resource-grid"></div>
+
+            <div id="notesEmptyState" class="exam-empty-state">
+                <div class="exam-empty-icon">▧</div>
+                <h3>No study materials found</h3>
+                <p>
+                    Study materials will appear here when verified
+                    resources are available in your database.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module" src="notes.js"></script>
+
+</body>
+</html>
