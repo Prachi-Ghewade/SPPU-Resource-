@@ -56,34 +56,25 @@ function getType(resource) {
     return normalize(resource.resource_type);
 }
 
+
 function matchesCategory(resource, category) {
-    const type = getType(resource);
+    const type = normalize(resource.resource_type);
 
     switch (category) {
-        case "video":
-            return type.includes("video") || type.includes("lecture");
+        case "revision":
+            return type === "revision sheet";
 
-        case "pyq":
-            return type.includes("pyq") ||
-                type.includes("question paper") ||
-                type.includes("previous year") ||
-                type.includes("past paper");
+        case "question-bank":
+            return type === "question bank";
 
-        case "notes":
-            return type.includes("note") ||
-                type.includes("study material") ||
-                type.includes("study_material");
-
-        case "practical":
-            return type.includes("practical") ||
-                type.includes("programming") ||
-                type.includes("lab") ||
-                type.includes("experiment");
+        case "quiz":
+            return type === "quiz";
 
         default:
             return true;
     }
 }
+
 
 function populateSelect(select, values, placeholder) {
     const previousValue = select.value;
@@ -164,13 +155,16 @@ function createCard(resource) {
     const card = createElement("article", "exam-resource-card");
     const top = createElement("div", "exam-card-top");
 
-    const icon = createElement(
-        "div",
-        "exam-resource-icon",
-        matchesCategory(resource, "video") ? "▷" :
-        matchesCategory(resource, "practical") ? "⌘" :
-        matchesCategory(resource, "pyq") ? "▤" : "▧"
-    );
+    
+const icon = createElement(
+    "div",
+    "exam-resource-icon",
+    normalize(resource.resource_type) === "revision sheet" ? "▤" :
+    normalize(resource.resource_type) === "question bank" ? "☷" :
+    normalize(resource.resource_type) === "quiz" ? "✓" : "▧"
+     );
+
+
 
     const heading = document.createElement("div");
 
@@ -341,7 +335,7 @@ async function loadResources() {
     try {
         // Capital R matches the table shown in your screenshot.
         const { data, error } = await supabase
-            .from("Resources")
+            .from("exam_preparation")
             .select("*")
             .eq("verified", true)
             .order("id", { ascending: false })
