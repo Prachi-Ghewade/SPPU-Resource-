@@ -66,7 +66,7 @@ async function loadResources() {
     resultCount.textContent = "Loading...";
 
     const { data, error } = await supabase
-        .from("Resources")
+        .from("notes")
         .select("*")
         .eq("verified", true)
         .order("id", { ascending: false });
