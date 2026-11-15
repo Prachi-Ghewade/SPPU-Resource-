@@ -4,107 +4,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Previous Year Papers | SPPU Resource Hub</title>
-    <link rel="stylesheet" href="pyq.css">
+    <title>SPPU Resource Hub | Previous Year Papers</title>
+    <link rel="stylesheet" href="exam preparation.css">
 </head>
 
 <body>
 
-<header class="navbar">
-    <div class="brand">
-        <div class="brand-icon">S</div>
-        <div>
-            <h2>StudySpace</h2>
-            <span>SPPU Resource Hub</span>
-        </div>
-    </div>
+<div class="app-layout">
 
-    <a href="index.html" class="home-link">← Back to Home</a>
-</header>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-<main class="page-container">
+        <a href="index.html" class="brand">
+            <span class="brand-logo">S</span>
+            <span>SPPU<span class="brand-light"> Resource Hub</span></span>
+        </a>
 
-    <section class="page-intro">
-        <p class="eyebrow">EXAM RESOURCES</p>
-        <h1>Previous Year Question Papers</h1>
-        <p>
-            Practice with previous SPPU question papers and prepare
-            confidently for your examinations.
-        </p>
-    </section>
+        <div class="sidebar-label">WORKSPACE</div>
 
-    <section class="search-section">
-        <div class="search-box">
-            <span>⌕</span>
-            <input
-                type="text"
-                id="pyq-search"
-                placeholder="Search papers by title, subject or year..."
-            >
-            <button id="clear-search">Clear</button>
-        </div>
-    </section>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link">
+                <span>⌂</span> Home / Dashboard
+            </a>
 
-    <section class="content-layout">
+            <a href="subjects.html" class="nav-link">
+                <span>▤</span> Subjects & Syllabus
+            </a>
 
-        <!-- LEFT SIDEBAR -->
-        <aside class="filter-sidebar">
+            <a href="notes.html" class="nav-link">
+                <span>▧</span> Notes & Study Materials
+            </a>
 
-            <div class="filter-heading">
-                <h3>Filters</h3>
-                <button id="reset-filters">Reset</button>
-            </div>
+            <a href="pyq.html" class="nav-link active">
+                <span>▤</span> Previous Year Papers
+            </a>
 
-            <div class="filter-group">
-                <label for="subject-filter">Subject</label>
-                <select id="subject-filter">
-                    <option value="">All Subjects</option>
-                </select>
-            </div>
+            <a href="videos.html" class="nav-link">
+                <span>▷</span> Video Lectures
+            </a>
 
-            <div class="filter-note">
-                <p>Find question papers for your subjects using the search and filter options.</p>
-            </div>
+            <a href="practicals.html" class="nav-link">
+                <span>⌘</span> Practicals & Programming
+            </a>
 
-        </aside>
+            <a href="exam-preparation.html" class="nav-link">
+                <span>✓</span> Exam Preparation
+            </a>
+        </nav>
 
-        <!-- MAIN CONTENT -->
-        <section class="resources-section">
+        <div class="sidebar-label secondary-label">PERSONAL</div>
 
-            <div class="results-header">
+        <nav class="sidebar-nav">
+            <a href="saved.html" class="nav-link">
+                <span>♡</span> Saved Resources
+            </a>
+
+            <a href="account.html" class="nav-link">
+                <span>◉</span> Student Account
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-help">
+                <div class="help-icon">?</div>
                 <div>
-                    <h2>Question Papers</h2>
-                    <p id="resource-count">Loading papers...</p>
-                </div>
-
-                <div class="sort-box">
-                    <label for="sort-filter">Sort by</label>
-                    <select id="sort-filter">
-                        <option value="latest">Latest first</option>
-                        <option value="title">Title A-Z</option>
-                        <option value="subject">Subject</option>
-                    </select>
+                    <strong>Study smarter</strong>
+                    <p>Keep your learning resources organized.</p>
                 </div>
             </div>
 
-            <p id="status-message" class="status-message">
-                Loading question papers...
-            </p>
+            <a href="admin.html" class="admin-link">
+                Admin & Content Management →
+            </a>
+        </div>
 
-            <div id="pyq-grid" class="resource-grid"></div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="exam-main">
+
+        <header class="exam-page-header">
+            <div>
+                <p class="exam-breadcrumb">
+                    Workspace / Previous Year Papers
+                </p>
+                <h1>Previous Year Papers</h1>
+            </div>
+
+            <div>
+                <span>Student</span>
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="exam-hero">
+
+            <div class="exam-hero-content">
+
+                <span class="exam-eyebrow">
+                    YOUR EXAM PRACTICE WORKSPACE
+                </span>
+
+                <h2>Practice smarter.<br>Score better.</h2>
+
+                <p>
+                    Explore previous SPPU question papers, understand
+                    exam patterns and prepare confidently for your
+                    Computer Engineering examinations.
+                </p>
+
+                <a href="#exam-filters" class="exam-button exam-button-primary">
+                    Find question papers →
+                </a>
+
+            </div>
+
+            <div class="exam-hero-decoration" aria-hidden="true">
+                ▤
+            </div>
 
         </section>
 
-    </section>
+        <!-- FILTERS -->
+        <section class="exam-section" id="exam-filters">
 
-</main>
+            <div class="exam-section-heading">
+                <div>
+                    <h2>Find your question papers</h2>
+                    <p>Filter by year, semester and subject.</p>
+                </div>
+            </div>
 
-<footer class="footer">
-    <p>© 2026 StudySpace | SPPU Resource Hub</p>
-</footer>
+            <form class="exam-filter-panel" id="examSearchForm">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="pyq.js" defer></script>
+                <label class="exam-search-label" for="examSearch">
+                    Search question papers
+                </label>
+
+                <input
+                    type="search"
+                    id="examSearch"
+                    name="search"
+                    placeholder="Search subject, paper or year..."
+                >
+
+                <div class="exam-filter-grid">
+
+                    <div class="exam-field">
+                        <label for="pyqYear">Engineering year</label>
+
+                        <select id="pyqYear" name="year">
+                            <option value="">All years</option>
+                            <option value="FE">First Year</option>
+                            <option value="SE">Second Year</option>
+                            <option value="TE">Third Year</option>
+                            <option value="BE">Final Year</option>
+                        </select>
+                    </div>
+
+                    <div class="exam-field">
+                        <label for="pyqSemester">Semester</label>
+
+                        <select id="pyqSemester" name="semester">
+                            <option value="">All semesters</option>
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+
+                    <div class="exam-field">
+                        <label for="pyqSubject">Subject</label>
+
+                        <select id="pyqSubject" name="subject">
+                            <option value="">All subjects</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="exam-filter-actions">
+
+                    <button type="submit" class="exam-button exam-button-primary">
+                        Apply filters →
+                    </button>
+
+                    <button type="reset" class="exam-button exam-button-secondary">
+                        Reset
+                    </button>
+
+                </div>
+
+            </form>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="exam-section exam-results-section">
+
+            <div class="exam-section-heading">
+                <div>
+                    <h2>Available question papers</h2>
+                    <p>Browse previous year papers in your study library.</p>
+                </div>
+
+                <span id="examResultCount" class="exam-result-count">
+                    0 resources
+                </span>
+            </div>
+
+            <div id="examResourceGrid" class="exam-resource-grid"></div>
+
+            <div id="examEmptyState" class="exam-empty-state">
+                <div class="exam-empty-icon">▤</div>
+                <h3>No question papers found</h3>
+                <p>
+                    Question papers will appear here when verified
+                    resources are available in your database.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module" src="pyq.js"></script>
 
 </body>
 </html>
