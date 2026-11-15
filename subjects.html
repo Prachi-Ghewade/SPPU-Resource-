@@ -6,120 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SPPU Resource Hub | Subjects & Syllabus</title>
+    <meta name="description" content="Explore SPPU Computer Engineering subjects and syllabus.">
 
-    <meta name="description"
-          content="Explore SPPU Computer Engineering subjects and syllabus.">
-
+    <link rel="stylesheet" href="exam preparation.css">
     <link rel="stylesheet" href="subjects.css">
 </head>
 
 <body>
-
 <div class="app-layout">
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-
         <a href="index.html" class="brand">
             <span class="brand-logo">S</span>
-            <span>SPPU <span class="brand-light">Resource Hub</span></span>
+            <span>SPPU<span class="brand-light"> Resource Hub</span></span>
         </a>
 
         <div class="sidebar-label">WORKSPACE</div>
 
         <nav class="sidebar-nav">
-
             <a href="index.html" class="nav-link">
                 <span>⌂</span> Home / Dashboard
             </a>
-
             <a href="subjects.html" class="nav-link active">
                 <span>▤</span> Subjects & Syllabus
             </a>
-
             <a href="notes.html" class="nav-link">
                 <span>▧</span> Notes & Study Materials
             </a>
-
             <a href="pyq.html" class="nav-link">
                 <span>▤</span> Previous Year Papers
             </a>
-
             <a href="videos.html" class="nav-link">
                 <span>▷</span> Video Lectures
             </a>
-
             <a href="practicals.html" class="nav-link">
                 <span>⌘</span> Practicals & Programming
             </a>
-
             <a href="exam-preparation.html" class="nav-link">
                 <span>✓</span> Exam Preparation
             </a>
-
         </nav>
 
         <div class="sidebar-label secondary-label">PERSONAL</div>
 
         <nav class="sidebar-nav">
-
             <a href="saved.html" class="nav-link">
                 <span>♡</span> Saved Resources
             </a>
-
             <a href="account.html" class="nav-link">
                 <span>◉</span> Student Account
             </a>
-
         </nav>
 
         <div class="sidebar-bottom">
-
             <div class="sidebar-help">
                 <div class="help-icon">?</div>
-
                 <div>
                     <strong>Study smarter</strong>
                     <p>Keep your learning resources organized.</p>
                 </div>
             </div>
-
             <a href="admin.html" class="admin-link">
                 Admin & Content Management →
             </a>
-
         </div>
-
     </aside>
 
-
     <!-- MAIN CONTENT -->
-    <main class="main-content">
+    <main class="exam-main">
 
-        <!-- HEADER -->
-        <header class="page-header">
-
-            <div>
-                <p class="breadcrumb">
-                    Workspace / Subjects & Syllabus
-                </p>
-
+        <!-- PAGE HEADER -->
+        <header class="exam-page-header">
+            <div class="exam-page-heading">
+                <p class="exam-breadcrumb">Workspace / Subjects & Syllabus</p>
                 <h1>Subjects & Syllabus</h1>
             </div>
 
-            <span class="student-label">Student</span>
-
+            <div class="exam-student">
+                <span class="exam-avatar">S</span>
+                <span>Student</span>
+            </div>
         </header>
 
-
         <!-- HERO -->
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <span class="hero-eyebrow">
-                    YOUR LEARNING WORKSPACE
-                </span>
+        <section class="exam-hero">
+            <div class="exam-hero-content">
+                <span class="exam-eyebrow">YOUR LEARNING WORKSPACE</span>
 
                 <h2>
                     Explore your subjects.<br>
@@ -131,43 +104,43 @@
                     their complete syllabus in one place.
                 </p>
 
-                <a href="#subject-filters" class="primary-button">
+                <a href="#subject-filters"
+                   class="exam-button exam-button-primary">
                     Explore subjects →
                 </a>
-
             </div>
 
-            <div class="hero-decoration">▤</div>
-
+            <div class="exam-hero-decoration" aria-hidden="true">
+                ▤
+            </div>
         </section>
 
+        <!-- SUBJECT FILTERS -->
+        <section class="exam-section" id="subject-filters">
 
-        <!-- FILTERS -->
-        <section class="content-section" id="subject-filters">
-
-            <div class="section-heading">
+            <div class="exam-section-heading">
                 <div>
                     <h2>Find your subjects</h2>
                     <p>Search and filter by engineering year and semester.</p>
                 </div>
             </div>
 
-            <form class="filter-panel" id="subjectSearchForm">
+            <form class="exam-filter-panel subject-filter-panel"
+                  id="subjectSearchForm">
 
-                <label for="subjectSearch">Search subjects</label>
+                <div class="subject-search-field">
+                    <label for="subjectSearch">Search subjects</label>
+                    <input
+                        type="search"
+                        id="subjectSearch"
+                        placeholder="Search subject name or subject code..."
+                    >
+                </div>
 
-                <input
-                    type="search"
-                    id="subjectSearch"
-                    placeholder="Search subject name or subject code..."
-                >
+                <div class="subject-filter-grid">
 
-                <div class="filter-grid">
-
-                    <div class="form-field">
-
+                    <div class="exam-field">
                         <label for="engineeringYear">Engineering year</label>
-
                         <select id="engineeringYear">
                             <option value="">All years</option>
                             <option value="FE">First Year</option>
@@ -175,13 +148,10 @@
                             <option value="TE">Third Year</option>
                             <option value="BE">Final Year</option>
                         </select>
-
                     </div>
 
-                    <div class="form-field">
-
+                    <div class="exam-field">
                         <label for="semester">Semester</label>
-
                         <select id="semester">
                             <option value="">All semesters</option>
                             <option value="1">Semester 1</option>
@@ -193,87 +163,67 @@
                             <option value="7">Semester 7</option>
                             <option value="8">Semester 8</option>
                         </select>
-
                     </div>
 
                 </div>
 
-                <div class="filter-actions">
-
-                    <button type="submit" class="primary-button">
+                <div class="subject-filter-actions">
+                    <button type="submit"
+                            class="exam-button exam-button-primary">
                         Apply filters →
                     </button>
 
-                    <button type="reset" class="secondary-button">
+                    <button type="reset"
+                            class="exam-button exam-button-secondary">
                         Reset
                     </button>
-
                 </div>
 
             </form>
-
         </section>
 
-
         <!-- SUBJECT RESULTS -->
-        <section class="content-section">
+        <section class="exam-section">
 
-            <div class="section-heading results-heading">
-
+            <div class="exam-section-heading">
                 <div>
                     <h2>Available subjects</h2>
                     <p>Select a subject to explore its complete syllabus.</p>
                 </div>
 
-                <span id="subjectCount" class="result-count">
+                <span id="subjectCount" class="exam-resource-badge">
                     0 subjects
                 </span>
-
             </div>
 
-
-            <!-- LOADING -->
-            <div id="subjectLoading" class="message-state">
-                Loading subjects...
+            <div id="subjectLoading" class="exam-loading-state">
+                <p>Loading subjects...</p>
             </div>
 
-
-            <!-- SUBJECT CARDS -->
             <div id="subjectGrid" class="subject-grid"></div>
 
-
-            <!-- EMPTY STATE -->
-            <div id="subjectEmptyState" class="message-state" hidden>
-
-                <div class="empty-icon">▤</div>
-
+            <div id="subjectEmptyState"
+                 class="exam-empty-state"
+                 hidden>
+                <div class="exam-empty-icon">▤</div>
                 <h3>No subjects found</h3>
-
-                <p>
-                    Try changing your search or filters.
-                </p>
-
+                <p>Try changing your search or filters.</p>
             </div>
 
-
-            <!-- ERROR -->
-            <div id="subjectError" class="message-state error-state" hidden>
-
+            <div id="subjectError"
+                 class="exam-empty-state subject-error-state"
+                 hidden>
                 <h3>Unable to load subjects</h3>
-
                 <p id="subjectErrorMessage">
                     Please try again later.
                 </p>
-
             </div>
 
         </section>
 
     </main>
-
 </div>
 
 <script type="module" src="subjects.js"></script>
-
 </body>
 </html>
