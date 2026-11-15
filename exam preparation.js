@@ -3,8 +3,8 @@ import { createClient } from
     "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 // Use the same existing Supabase project.
-const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
+const SUPABASE_URL = "https://aaowvybuurdnhjaugjqr.supabase.co";
+const SUPABASE_KEY = "sb_publishable_IC5Lui65jLhlNu5kDeVqHQ_LRO5828U";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
