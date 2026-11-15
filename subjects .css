@@ -1,391 +1,457 @@
 
-/* =========================================
+/* ==========================================
    SPPU RESOURCE HUB
-   SUBJECTS & SYLLABUS PAGE
-========================================= */
+   SUBJECTS & SYLLABUS
+   COMPLETE STYLESHEET
+========================================== */
 
 
-/* =================================
-   SUBJECTS FILTER PANEL
-================================= */
+/* ==========================================
+   1. GLOBAL STYLES
+========================================== */
 
-#subjectSearchForm {
-    display: grid;
-    grid-template-columns: 1.5fr 2fr auto;
-    align-items: end;
-    gap: 14px;
-
-    padding: 20px;
-
-    background: #ffffff;
-    border: 1px solid #e9e5f4;
-    border-radius: 14px;
-
-    box-shadow: 0 5px 20px rgba(30, 20, 70, 0.03);
-}
-
-/* SEARCH LABEL */
-
-#subjectSearchForm .exam-search-label {
-    grid-column: 1;
-    grid-row: 1;
-
-    font-size: 11px;
-    font-weight: 600;
-    color: #39415c;
-}
-
-/* SEARCH INPUT */
-
-#subjectSearch {
-    grid-column: 1;
-    grid-row: 2;
-
-    width: 100%;
-    height: 38px;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-
-    padding: 0 12px;
-
-    border: 1px solid #e8e4f0;
-    border-radius: 8px;
-
-    background: #fdfcff;
-    font-size: 12px;
-    outline: none;
 }
 
-#subjectSearch:focus {
-    border-color: #7048ff;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #faf9fc;
+    color: #20243a;
+    font-size: 13px;
 }
 
-#subjectSearch::placeholder {
-    color: #a09bb3;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-/* YEAR AND SEMESTER */
-
-#subjectSearchForm .subject-filter-grid {
-    grid-column: 2;
-    grid-row: 1 / 3;
-
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-#subjectSearchForm .exam-field {
+
+/* ==========================================
+   2. MAIN APP LAYOUT
+========================================== */
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+/* ==========================================
+   3. SIDEBAR
+========================================== */
+
+.sidebar {
+    width: 278px;
+    min-width: 278px;
+
     display: flex;
     flex-direction: column;
-    gap: 8px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    padding: 23px 15px;
+
+    background: #ffffff;
+    border-right: 1px solid #ebe8f1;
+
+    z-index: 100;
 }
 
-#subjectSearchForm .exam-field label {
-    font-size: 11px;
-    font-weight: 600;
-    color: #39415c;
+
+/* Brand */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 7px;
+    margin-bottom: 32px;
+
+    color: #20243a;
+    font-size: 14px;
+    font-weight: 700;
 }
 
-#subjectSearchForm .exam-field select {
-    width: 100%;
-    height: 38px;
-    box-sizing: border-box;
-
-    padding: 0 10px;
-
-    border: 1px solid #e8e4f0;
-    border-radius: 8px;
-
-    background: #fdfcff;
-    color: #30364c;
-    font-size: 11px;
-
-    outline: none;
-    cursor: pointer;
-}
-
-#subjectSearchForm .exam-field select:focus {
-    border-color: #7048ff;
-}
-
-/* BUTTONS */
-
-#subjectSearchForm .exam-filter-actions {
-    grid-column: 3;
-    grid-row: 2;
+.brand-logo {
+    width: 34px;
+    height: 34px;
 
     display: flex;
-    gap: 8px;
     align-items: center;
+    justify-content: center;
+
+    background: #7048ff;
+    color: #ffffff;
+
+    border-radius: 10px;
+    font-size: 17px;
 }
 
-#subjectSearchForm .exam-button {
-    height: 38px;
-    padding: 0 14px;
+.brand-light {
+    color: #77758f;
+    font-weight: 400;
+}
 
-    border-radius: 8px;
+
+/* Sidebar headings */
+
+.sidebar-label {
+    padding: 0 8px;
+    margin: 0 0 13px;
+
+    color: #9995aa;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.secondary-label {
+    margin-top: 22px;
+}
+
+
+/* Navigation */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    color: #62647a;
     font-size: 11px;
     font-weight: 600;
 
-    white-space: nowrap;
-    cursor: pointer;
+    border-radius: 9px;
+    transition: 0.2s ease;
 }
 
-#subjectSearchForm .exam-button-primary {
-    background: #7048ff;
-    color: #ffffff;
-    border: 1px solid #7048ff;
+.nav-link span {
+    width: 15px;
+    text-align: center;
+    font-size: 15px;
 }
 
-#subjectSearchForm .exam-button-primary:hover {
-    background: #5d36e8;
-}
-
-#subjectSearchForm .exam-button-secondary {
-    background: #ffffff;
-    color: #35364a;
-    border: 1px solid #e8e4f0;
-}
-
-#subjectSearchForm .exam-button-secondary:hover {
+.nav-link:hover {
     background: #f7f4ff;
+    color: #7048ff;
 }
 
-/* RESPONSIVE */
-
-@media (max-width: 1100px) {
-    #subjectSearchForm {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    #subjectSearchForm .exam-search-label,
-    #subjectSearch {
-        grid-column: 1 / -1;
-    }
-
-    #subjectSearchForm .subject-filter-grid {
-        grid-column: 1 / -1;
-        grid-row: auto;
-    }
-
-    #subjectSearchForm .exam-filter-actions {
-        grid-column: 1 / -1;
-        grid-row: auto;
-        justify-content: flex-end;
-    }
-}
-
-@media (max-width: 550px) {
-    #subjectSearchForm {
-        grid-template-columns: 1fr;
-    }
-
-    #subjectSearchForm .subject-filter-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #subjectSearchForm .exam-filter-actions {
-        justify-content: flex-start;
-    }
+.nav-link.active {
+    background: #f0ebff;
+    color: #7048ff;
 }
 
 
+/* Sidebar bottom */
 
-/* =========================================
-   1. PAGE HEADER
-========================================= */
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-help {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 13px 10px;
+
+    border: 1px solid #eae5f4;
+    border-radius: 11px;
+
+    background: #ffffff;
+}
+
+.help-icon {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    background: #f0ebff;
+    color: #7048ff;
+
+    border-radius: 7px;
+    font-weight: 700;
+}
+
+.sidebar-help strong {
+    font-size: 10px;
+}
+
+.sidebar-help p {
+    margin-top: 5px;
+
+    color: #89869e;
+    font-size: 9px;
+    line-height: 1.6;
+}
+
+.admin-link {
+    display: block;
+    margin: 16px 7px 0;
+
+    color: #89869e;
+    font-size: 10px;
+}
 
 
+/* ==========================================
+   4. MAIN CONTENT
+========================================== */
+
+.subject-main,
+.exam-main {
+    width: calc(100% - 278px);
+    min-height: 100vh;
+
+    margin-left: 278px;
+    padding: 25px 36px 45px;
+}
+
+
+/* ==========================================
+   5. PAGE HEADER
+========================================== */
 
 .exam-page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    padding-bottom: 19px;
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid #ebe8f1;
 }
 
 .exam-breadcrumb {
-    font-size: 11px;
-    color: #85839b;
     margin-bottom: 7px;
+
+    color: #89869e;
+    font-size: 10px;
 }
 
 .exam-page-header h1 {
-    font-size: 19px;
     color: #20243a;
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.exam-page-header > div:last-child {
-    font-size: 13px;
+.exam-student {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
     color: #20243a;
+    font-size: 12px;
 }
 
 
-/* =========================================
-   2. HERO BANNER
-========================================= */
+/* ==========================================
+   6. HERO BANNER
+========================================== */
 
 .exam-hero {
-    position: relative;
-    overflow: hidden;
+    min-height: 230px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    min-height: 230px;
     padding: 32px;
 
     background: linear-gradient(
         110deg,
-        #f2edff,
+        #f1edff,
         #faf8ff
     );
 
     border: 1px solid #e8ddff;
     border-radius: 17px;
+
+    overflow: hidden;
 }
 
 .exam-hero-content {
-    position: relative;
-    z-index: 2;
     max-width: 520px;
 }
 
 .exam-eyebrow {
     display: block;
 
+    margin-bottom: 13px;
+
     color: #7048ff;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.2px;
-
-    margin-bottom: 13px;
 }
 
 .exam-hero h2 {
+    margin-bottom: 14px;
+
     color: #20243a;
     font-size: 30px;
     line-height: 1.25;
-
-    margin-bottom: 14px;
 }
 
 .exam-hero p {
+    max-width: 440px;
+
+    margin-bottom: 17px;
+
     color: #77758f;
     font-size: 12px;
     line-height: 1.7;
-
-    max-width: 440px;
-    margin-bottom: 17px;
 }
 
-.exam-hero-decoration {
+
+/* Hero button */
+
+.exam-primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 11px 16px;
+
+    background: #7048ff;
+    color: #ffffff;
+
+    border: 1px solid #7048ff;
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.exam-primary-btn:hover {
+    background: #5d36e8;
+}
+
+
+/* Hero decoration */
+
+.exam-hero-art {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.exam-art-circle {
     width: 125px;
     height: 125px;
-    flex-shrink: 0;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
+    position: relative;
+
+    background: #ffffffa8;
     border: 1px solid #e9e0ff;
     border-radius: 50%;
 
-    background: #ffffffa8;
     color: #7048ff;
-
-    font-size: 52px;
-    margin-right: 0;
+    font-size: 42px;
 }
 
-
-/* =========================================
-   3. BUTTONS
-========================================= */
-
-.exam-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 11px 16px;
-
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 600;
-
-    text-decoration: none;
-    cursor: pointer;
-
-    transition: 0.2s ease;
-}
-
-.exam-button-primary {
+.exam-art-circle span {
+    display: block;
+    height: 4px;
+    width: 40px;
+    margin-top: 6px;
     background: #7048ff;
-    color: #ffffff;
-    border: 1px solid #7048ff;
+    border-radius: 5px;
 }
 
-.exam-button-primary:hover {
-    background: #5d36e8;
-    border-color: #5d36e8;
-}
-
-.exam-button-secondary {
-    background: #ffffff;
-    color: #35364a;
-    border: 1px solid #e8e4f0;
-}
-
-.exam-button-secondary:hover {
-    background: #f7f4ff;
+.exam-spark {
+    position: absolute;
+    right: 12px;
+    bottom: 15px;
+    font-size: 16px;
 }
 
 
-/* =========================================
-   4. SECTION HEADINGS
-========================================= */
+/* ==========================================
+   7. SECTIONS
+========================================== */
 
 .exam-section {
-    margin-top: 28px;
+    margin-top: 29px;
 }
 
 .exam-section-heading {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 
     margin-bottom: 17px;
 }
 
 .exam-section-heading h2 {
-    font-size: 16px;
-    color: #20243a;
     margin-bottom: 7px;
+
+    color: #20243a;
+    font-size: 16px;
 }
 
 .exam-section-heading p {
-    font-size: 11px;
     color: #85839b;
+    font-size: 11px;
 }
 
 .exam-result-count {
-    font-size: 13px;
     color: #20243a;
+    font-size: 13px;
     white-space: nowrap;
 }
 
 
-/* =========================================
-   5. FILTER PANEL
-========================================= */
+/* ==========================================
+   8. SEARCH AND FILTER PANEL
+========================================== */
 
 #subjectSearchForm {
     display: grid;
 
     grid-template-columns:
         minmax(220px, 1.5fr)
-        minmax(300px, 2fr)
+        minmax(320px, 2fr)
         auto;
 
     align-items: end;
@@ -409,6 +475,8 @@
 
     display: block;
 
+    margin-bottom: 0;
+
     color: #39415c;
     font-size: 11px;
     font-weight: 600;
@@ -423,20 +491,18 @@
 
     width: 100%;
     height: 38px;
-    box-sizing: border-box;
 
     padding: 0 12px;
 
+    background: #fdfcff;
+
     border: 1px solid #e8e4f0;
     border-radius: 8px;
-
-    background: #fdfcff;
 
     color: #30364c;
     font-size: 12px;
 
     outline: none;
-    transition: 0.2s ease;
 }
 
 #subjectSearch::placeholder {
@@ -449,7 +515,7 @@
 }
 
 
-/* Year and semester filters */
+/* Filter grid */
 
 #subjectSearchForm .subject-filter-grid {
     grid-column: 2;
@@ -457,9 +523,11 @@
 
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     gap: 10px;
 }
+
+
+/* Individual filter */
 
 #subjectSearchForm .exam-field {
     display: flex;
@@ -478,19 +546,18 @@
 #subjectSearchForm .exam-field select {
     width: 100%;
     height: 38px;
-    box-sizing: border-box;
 
     padding: 0 10px;
+
+    background: #fdfcff;
 
     border: 1px solid #e8e4f0;
     border-radius: 8px;
 
-    background: #fdfcff;
     color: #30364c;
-
     font-size: 11px;
-    outline: none;
 
+    outline: none;
     cursor: pointer;
 }
 
@@ -499,7 +566,7 @@
 }
 
 
-/* Filter action buttons */
+/* Filter buttons */
 
 #subjectSearchForm .exam-filter-actions {
     grid-column: 3;
@@ -510,33 +577,40 @@
     gap: 8px;
 }
 
-#subjectSearchForm .exam-button {
+.exam-reset-btn {
     height: 38px;
-    padding: 0 14px;
+    padding: 0 15px;
 
-    white-space: nowrap;
+    background: #ffffff;
+    color: #35364a;
+
+    border: 1px solid #e8e4f0;
+    border-radius: 8px;
+
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.exam-reset-btn:hover {
+    background: #f7f4ff;
+    border-color: #d9cefa;
 }
 
 
-/* =========================================
-   6. SUBJECT CARDS GRID
-========================================= */
+/* ==========================================
+   9. SUBJECT CARDS
+========================================== */
 
 .subject-grid {
     display: grid;
-
     grid-template-columns: repeat(3, minmax(0, 1fr));
-
     gap: 15px;
 }
-
-
-/* Individual card */
 
 .subject-card {
     min-width: 0;
 
-    padding: 19px;
+    padding: 18px;
 
     background: #ffffff;
     border: 1px solid #e9e5f4;
@@ -548,7 +622,6 @@
 .subject-card:hover {
     border-color: #d6c8ff;
     box-shadow: 0 5px 18px rgba(60, 40, 100, 0.06);
-
     transform: translateY(-2px);
 }
 
@@ -563,47 +636,44 @@
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 14px;
-
-    border-radius: 10px;
+    margin-bottom: 13px;
 
     background: #f0ebff;
-    color: #7048ff;
+    border-radius: 10px;
 
+    color: #7048ff;
     font-size: 20px;
 }
 
 
-/* Subject name */
+/* Subject title */
 
 .subject-card h3 {
+    margin-bottom: 7px;
+
     color: #20243a;
     font-size: 14px;
     line-height: 1.5;
-
-    margin-bottom: 7px;
 }
 
 
 /* Subject description */
 
-.subject-card > p {
+.subject-card p {
     color: #85839b;
     font-size: 11px;
     line-height: 1.6;
-
-    margin-bottom: 12px;
 }
 
 
-/* Subject information tags */
+/* Subject tags */
 
 .subject-card-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
 
-    margin: 12px 0;
+    margin: 13px 0;
 }
 
 .subject-card-meta span {
@@ -617,13 +687,12 @@
 }
 
 
-/* Explore syllabus button */
+/* Subject card button */
 
 .subject-card-link {
     display: inline-block;
 
-    margin-top: 8px;
-    padding: 0;
+    margin-top: 10px;
 
     background: transparent;
     border: none;
@@ -640,12 +709,12 @@
 }
 
 
-/* =========================================
-   7. SYLLABUS DETAILS
-========================================= */
+/* ==========================================
+   10. SYLLABUS DETAILS
+========================================== */
 
 .subject-syllabus-details {
-    margin-top: 15px;
+    margin-top: 14px;
     padding-top: 12px;
 
     border-top: 1px solid #eeeaf5;
@@ -664,33 +733,31 @@
 .syllabus-unit strong {
     display: block;
 
+    margin-bottom: 6px;
+
     color: #30364c;
     font-size: 12px;
-    line-height: 1.5;
 }
 
 .syllabus-unit p {
-    margin-top: 6px;
-
     color: #85839b;
     font-size: 11px;
     line-height: 1.7;
 }
 
 
-/* =========================================
-   8. EMPTY STATE
-========================================= */
+/* ==========================================
+   11. EMPTY STATE
+========================================== */
 
 .exam-empty-state {
-    width: 100%;
     min-height: 180px;
-    box-sizing: border-box;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     padding: 25px;
 
@@ -706,24 +773,23 @@
     height: 46px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     margin-bottom: 13px;
 
+    background: #f1ecff;
     border-radius: 12px;
 
-    background: #f1ecff;
     color: #7048ff;
-
     font-size: 22px;
 }
 
 .exam-empty-state h3 {
+    margin-bottom: 8px;
+
     color: #20243a;
     font-size: 13px;
-
-    margin-bottom: 8px;
 }
 
 .exam-empty-state p {
@@ -733,40 +799,19 @@
 }
 
 
-/* =========================================
-   9. ERROR STATE
-========================================= */
-
-#subjectError {
-    margin-top: 15px;
-
-    background: #fffafa;
-    border-color: #f0dada;
-}
-
-#subjectError h3 {
-    color: #a33b3b;
-}
-
-
-/* =========================================
-   10. RESPONSIVE DESIGN
-========================================= */
+/* ==========================================
+   12. RESPONSIVE DESIGN
+========================================== */
 
 @media (max-width: 1200px) {
 
-    #subjectSearchForm {
-        grid-template-columns:
-            minmax(180px, 1fr)
-            minmax(280px, 1.5fr);
-
+    .subject-main,
+    .exam-main {
+        padding: 24px;
     }
 
-    #subjectSearchForm .exam-filter-actions {
-        grid-column: 1 / -1;
-        grid-row: auto;
-
-        justify-content: flex-end;
+    #subjectSearchForm {
+        grid-template-columns: 1fr 1fr;
     }
 
     #subjectSearchForm .exam-search-label {
@@ -784,14 +829,31 @@
         grid-row: 1 / 3;
     }
 
+    #subjectSearchForm .exam-filter-actions {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        justify-content: flex-end;
+    }
+
     .subject-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
 }
 
 
 @media (max-width: 750px) {
+
+    .sidebar {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .subject-main,
+    .exam-main {
+        width: calc(100% - 220px);
+        margin-left: 220px;
+        padding: 20px;
+    }
 
     .exam-hero {
         min-height: auto;
@@ -802,49 +864,84 @@
         font-size: 25px;
     }
 
-    .exam-hero-decoration {
+    .exam-hero-art {
+        width: 100px;
+        height: 100px;
+    }
+
+    .exam-art-circle {
         width: 85px;
         height: 85px;
-        font-size: 35px;
     }
 
     #subjectSearchForm {
         grid-template-columns: 1fr;
     }
 
-    #subjectSearchForm .exam-search-label {
-        grid-column: 1;
-        grid-row: auto;
-    }
-
-    #subjectSearch {
-        grid-column: 1;
-        grid-row: auto;
-    }
-
-    #subjectSearchForm .subject-filter-grid {
+    #subjectSearchForm .exam-search-label,
+    #subjectSearch,
+    #subjectSearchForm .subject-filter-grid,
+    #subjectSearchForm .exam-filter-actions {
         grid-column: 1;
         grid-row: auto;
     }
 
     #subjectSearchForm .exam-filter-actions {
-        grid-column: 1;
-        grid-row: auto;
-
         justify-content: flex-start;
     }
-
 }
 
 
 @media (max-width: 550px) {
 
-    .exam-hero-decoration {
+    .sidebar {
+        width: 70px;
+        min-width: 70px;
+        padding: 18px 9px;
+    }
+
+    .brand {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .brand > span:last-child,
+    .sidebar-label,
+    .nav-link:not(.active) {
         display: none;
     }
 
+    .nav-link {
+        justify-content: center;
+        padding: 13px 5px;
+    }
+
+    .nav-link span {
+        font-size: 18px;
+    }
+
+    .sidebar-help,
+    .admin-link {
+        display: none;
+    }
+
+    .subject-main,
+    .exam-main {
+        width: calc(100% - 70px);
+        margin-left: 70px;
+        padding: 15px;
+    }
+
+    .exam-hero {
+        padding: 22px;
+    }
+
     .exam-hero h2 {
-        font-size: 23px;
+        font-size: 22px;
+    }
+
+    .exam-hero-art {
+        display: none;
     }
 
     .subject-grid {
@@ -859,10 +956,9 @@
         align-items: flex-start;
         gap: 10px;
     }
-
 }
 
 
-/* =========================================
+/* ==========================================
    END OF SUBJECTS & SYLLABUS CSS
-========================================= */
+========================================== */
