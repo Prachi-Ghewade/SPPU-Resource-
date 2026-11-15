@@ -1,18 +1,18 @@
 
-/*
- * SPPU Resource Hub
- * Subjects & Syllabus Page
- */
-
-// =====================================
-// SUPABASE CONNECTION
-// =====================================
+/* =====================================
+   SPPU RESOURCE HUB - SUBJECTS
+   Supabase Integration
+===================================== */
 
 import { createClient } from
-    "https://esm.sh/@supabase/supabase-js@2";
+    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+/* =====================================
+   SUPABASE CONFIGURATION
+===================================== */
 
 const SUPABASE_URL = "YOUR_EXISTING_SUPABASE_URL";
-
 const SUPABASE_KEY = "YOUR_EXISTING_SUPABASE_PUBLISHABLE_KEY";
 
 const supabase = createClient(
@@ -21,195 +21,106 @@ const supabase = createClient(
 );
 
 
-// =====================================
-// DATABASE SETTINGS
-// =====================================
+/* =====================================
+   DOM ELEMENTS
+===================================== */
 
-// Change to true after creating your Supabase tables.
-const DATABASE_CONNECTED = false;
+const searchForm = document.getElementById("subjectSearchForm");
 
+const searchInput = document.getElementById("subjectSearch");
 
-// Expected future tables:
-// subjects
-// syllabus_units
+const yearFilter = document.getElementById("engineeringYear");
 
+const semesterFilter = document.getElementById("semester");
 
-// =====================================
-// DOM ELEMENTS
-// =====================================
+const subjectGrid = document.getElementById("subjectGrid");
 
-const searchInput =
-    document.getElementById("subjectSearch");
+const subjectCount = document.getElementById("subjectCount");
 
-const yearFilter =
-    document.getElementById("engineeringYear");
+const loadingState = document.getElementById("subjectLoading");
 
-const semesterFilter =
-    document.getElementById("semester");
+const emptyState = document.getElementById("subjectEmptyState");
 
-const searchForm =
-    document.getElementById("subjectSearchForm");
+const errorState = document.getElementById("subjectError");
 
-const subjectGrid =
-    document.getElementById("subjectGrid");
-
-const subjectCount =
-    document.getElementById("subjectCount");
-
-const emptyState =
-    document.getElementById("subjectEmptyState");
-
-const errorState =
-    document.getElementById("subjectError");
-
-const errorMessage =
-    document.getElementById("subjectErrorMessage");
+const errorMessage = document.getElementById("subjectErrorMessage");
 
 
-// =====================================
-// DATA STORAGE
-// =====================================
+/* =====================================
+   DATA
+===================================== */
 
 let allSubjects = [];
 
 
-// =====================================
-// HTML ESCAPING
-// =====================================
-
-function escapeHTML(value) {
-
-    return String(value ?? "").replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-    })[char]);
-
-}
-
-
-// =====================================
-// NORMALIZE YEAR
-// =====================================
-
-function normalizeYear(value) {
-
-    const year = String(value || "")
-        .toLowerCase()
-        .trim();
-
-    if (["fe", "first year", "first"].includes(year))
-        return "FE";
-
-    if (["se", "second year", "second"].includes(year))
-        return "SE";
-
-    if (["te", "third year", "third"].includes(year))
-        return "TE";
-
-    if (["be", "final year", "fourth year", "final"].includes(year))
-        return "BE";
-
-    return year.toUpperCase();
-
-}
-
-
-// =====================================
-// LOAD SUBJECTS FROM SUPABASE
-// =====================================
+/* =====================================
+   FETCH SUBJECTS FROM SUPABASE
+===================================== */
 
 async function loadSubjects() {
 
+    loadingState.hidden = false;
+    emptyState.hidden = true;
+    errorState.hidden = true;
     subjectGrid.innerHTML = "";
-
-    errorState.style.display = "none";
-
-    if (!DATABASE_CONNECTED) {
-
-        subjectCount.textContent = "0 subjects";
-
-        emptyState.style.display = "block";
-
-        return;
-
-    }
-
-    emptyState.style.display = "none";
-
-    subjectCount.textContent = "Loading...";
-
 
     const { data, error } = await supabase
         .from("subjects")
         .select("*")
-        .order("id", { ascending: true });
+        .eq("verified", true)
+        .order("engineering_year", { ascending: true })
+        .order("semester", { ascending: true });
 
-
-    console.log("Subjects data:", data);
-    console.log("Subjects error:", error);
-
+    loadingState.hidden = true;
 
     if (error) {
 
         console.error("Supabase error:", error);
 
-        subjectCount.textContent = "0 subjects";
-
         errorMessage.textContent = error.message;
 
-        errorState.style.display = "block";
+        errorState.hidden = false;
+
+        subjectCount.textContent = "0 subjects";
 
         return;
-
     }
-
 
     allSubjects = data || [];
 
-    applyFilters();
+    console.log("Subjects loaded:", allSubjects);
 
+    applyFilters();
 }
 
 
-// =====================================
-// APPLY FILTERS
-// =====================================
+/* =====================================
+   FILTER SUBJECTS
+===================================== */
 
 function applyFilters() {
 
-    const search =
-        searchInput.value.toLowerCase().trim();
+    const searchValue = searchInput.value
+        .trim()
+        .toLowerCase();
 
-    const selectedYear =
-        yearFilter.value;
+    const selectedYear = yearFilter.value;
 
-    const selectedSemester =
-        semesterFilter.value;
-
+    const selectedSemester = semesterFilter.value;
 
     const filteredSubjects = allSubjects.filter(subject => {
 
-        const subjectName =
-            String(subject.subject_name || "").toLowerCase();
-
-        const subjectCode =
-            String(subject.subject_code || "").toLowerCase();
-
         const matchesSearch =
-            subjectName.includes(search) ||
-            subjectCode.includes(search);
+            subject.subject_name.toLowerCase().includes(searchValue) ||
+            subject.subject_code.toLowerCase().includes(searchValue);
 
         const matchesYear =
             !selectedYear ||
-            normalizeYear(subject.year) === selectedYear;
+            subject.engineering_year === selectedYear;
 
         const matchesSemester =
             !selectedSemester ||
-            String(subject.semester || "") === selectedSemester;
-
+            String(subject.semester) === selectedSemester;
 
         return (
             matchesSearch &&
@@ -219,26 +130,22 @@ function applyFilters() {
 
     });
 
-
     renderSubjects(filteredSubjects);
-
 }
 
 
-// =====================================
-// RENDER SUBJECT CARDS
-// =====================================
+/* =====================================
+   DISPLAY SUBJECT CARDS
+===================================== */
 
 function renderSubjects(subjects) {
 
     subjectGrid.innerHTML = "";
 
     subjectCount.textContent =
-        `${subjects.length} subjects`;
+        `${subjects.length} ${subjects.length === 1 ? "subject" : "subjects"}`;
 
-    emptyState.style.display =
-        subjects.length === 0 ? "block" : "none";
-
+    emptyState.hidden = subjects.length !== 0;
 
     subjects.forEach(subject => {
 
@@ -246,58 +153,105 @@ function renderSubjects(subjects) {
 
         card.className = "subject-card";
 
+        const description = escapeHTML(
+            subject.description || "Explore the complete syllabus for this subject."
+        );
 
-        const name =
-            escapeHTML(subject.subject_name);
+        const syllabus = Array.isArray(subject.syllabus)
+            ? subject.syllabus
+            : [];
 
-        const code =
-            escapeHTML(subject.subject_code || "Code not available");
+        const syllabusHTML = syllabus.length
+            ? syllabus.map((unit, index) => {
 
-        const year =
-            escapeHTML(subject.year || "");
+                const unitNumber = escapeHTML(
+                    String(unit.unit ?? index + 1)
+                );
 
-        const semester =
-            escapeHTML(subject.semester || "");
+                const unitTitle = escapeHTML(
+                    unit.title || `Unit ${index + 1}`
+                );
 
-        const description =
-            escapeHTML(subject.description || "Explore the complete subject syllabus.");
+                const topics = Array.isArray(unit.topics)
+                    ? unit.topics
+                    : [];
 
+                const topicsHTML = topics.length
+                    ? `<ul>
+                        ${topics.map(topic =>
+                            `<li>${escapeHTML(String(topic))}</li>`
+                        ).join("")}
+                       </ul>`
+                    : "<p>No topics added yet.</p>";
+
+                return `
+                    <div class="syllabus-unit">
+                        <h4>Unit ${unitNumber}: ${unitTitle}</h4>
+                        ${topicsHTML}
+                    </div>
+                `;
+
+            }).join("")
+            : "<p>No syllabus has been added yet.</p>";
 
         card.innerHTML = `
 
-            <div class="subject-card-icon">
-                ▤
-            </div>
+            <div class="subject-card-icon">▤</div>
 
-            <h3>${name}</h3>
+            <h3>${escapeHTML(subject.subject_name)}</h3>
 
-            <p>${description}</p>
+            <p class="subject-card-description">
+                ${description}
+            </p>
 
             <div class="subject-card-meta">
 
-                <span>${code}</span>
+                <span>${escapeHTML(subject.subject_code)}</span>
 
-                ${year ? `<span>${year}</span>` : ""}
+                <span>${escapeHTML(subject.engineering_year)}</span>
 
-                ${semester ? `<span>Semester ${semester}</span>` : ""}
+                <span>Semester ${escapeHTML(String(subject.semester))}</span>
 
             </div>
 
             <button
                 type="button"
-                class="subject-card-link"
-                data-subject-id="${escapeHTML(subject.id)}"
+                class="subject-card-button"
+                aria-expanded="false"
             >
-                Explore syllabus →
+                View complete syllabus →
             </button>
 
-            <div class="subject-syllabus-details"
-                 id="syllabus-${escapeHTML(subject.id)}"
-                 hidden>
+            <div class="syllabus-details">
+
+                ${syllabusHTML}
+
             </div>
 
         `;
 
+        const syllabusButton = card.querySelector(
+            ".subject-card-button"
+        );
+
+        const syllabusDetails = card.querySelector(
+            ".syllabus-details"
+        );
+
+        syllabusButton.addEventListener("click", () => {
+
+            const isOpen = syllabusDetails.classList.toggle("open");
+
+            syllabusButton.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            syllabusButton.textContent = isOpen
+                ? "Hide syllabus ↑"
+                : "View complete syllabus →";
+
+        });
 
         subjectGrid.appendChild(card);
 
@@ -306,112 +260,32 @@ function renderSubjects(subjects) {
 }
 
 
-// =====================================
-// LOAD SUBJECT SYLLABUS
-// =====================================
+/* =====================================
+   HTML ESCAPING
+===================================== */
 
-async function loadSyllabus(subjectId) {
+function escapeHTML(value) {
 
-    const syllabusContainer =
-        document.getElementById(`syllabus-${subjectId}`);
+    return String(value).replace(/[&<>"']/g, character => {
 
-    if (!syllabusContainer) return;
+        const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
 
+        return entities[character];
 
-    // Database will be connected later.
-    if (!DATABASE_CONNECTED) {
-
-        syllabusContainer.hidden = false;
-
-        syllabusContainer.textContent =
-            "Syllabus details will be available after database connection.";
-
-        return;
-
-    }
-
-
-    syllabusContainer.hidden = false;
-
-    syllabusContainer.textContent = "Loading syllabus...";
-
-
-    const { data, error } = await supabase
-        .from("syllabus_units")
-        .select("*")
-        .eq("subject_id", subjectId)
-        .order("unit_number", { ascending: true });
-
-
-    if (error) {
-
-        console.error("Syllabus error:", error);
-
-        syllabusContainer.textContent =
-            "Unable to load syllabus.";
-
-        return;
-
-    }
-
-
-    if (!data || data.length === 0) {
-
-        syllabusContainer.textContent =
-            "No syllabus units have been added yet.";
-
-        return;
-
-    }
-
-
-    syllabusContainer.innerHTML = data.map(unit => `
-
-        <div class="syllabus-unit">
-
-            <strong>
-                Unit ${escapeHTML(unit.unit_number)}:
-                ${escapeHTML(unit.unit_title)}
-            </strong>
-
-            <p>${escapeHTML(unit.topics || "")}</p>
-
-        </div>
-
-    `).join("");
+    });
 
 }
 
 
-// =====================================
-// SYLLABUS BUTTON EVENT
-// =====================================
-
-subjectGrid.addEventListener("click", event => {
-
-    const button = event.target.closest(
-        ".subject-card-link"
-    );
-
-    if (!button) return;
-
-    const subjectId = button.dataset.subjectId;
-
-    loadSyllabus(subjectId);
-
-});
-
-
-// =====================================
-// SEARCH AND FILTER EVENTS
-// =====================================
-
-searchInput.addEventListener("input", applyFilters);
-
-yearFilter.addEventListener("change", applyFilters);
-
-semesterFilter.addEventListener("change", applyFilters);
-
+/* =====================================
+   SEARCH AND FILTER EVENTS
+===================================== */
 
 searchForm.addEventListener("submit", event => {
 
@@ -422,15 +296,24 @@ searchForm.addEventListener("submit", event => {
 });
 
 
+searchInput.addEventListener("input", applyFilters);
+
+yearFilter.addEventListener("change", applyFilters);
+
+semesterFilter.addEventListener("change", applyFilters);
+
+
 searchForm.addEventListener("reset", () => {
 
-    setTimeout(applyFilters, 0);
+    setTimeout(() => {
+        applyFilters();
+    }, 0);
 
 });
 
 
-// =====================================
-// INITIALIZE PAGE
-// =====================================
+/* =====================================
+   INITIALIZE PAGE
+===================================== */
 
 loadSubjects();
