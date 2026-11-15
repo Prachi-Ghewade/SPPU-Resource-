@@ -4,8 +4,8 @@
  * Uses the practicals_programming Supabase table.
  */
 
-const SUPABASE_URL = "YOUR_EXISTING_SUPABASE_URL";
-const SUPABASE_KEY = "YOUR_EXISTING_SUPABASE_PUBLISHABLE_KEY";
+const SUPABASE_URL = "https://aaowvybuurdnhjaugjqr.supabase.co";
+const SUPABASE_KEY = "sb_publishable_IC5Lui65jLhlNu5kDeVqHQ_LRO5828U";
 
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
