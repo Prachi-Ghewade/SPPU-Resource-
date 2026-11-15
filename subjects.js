@@ -21,28 +21,20 @@ const supabase = createClient(
 );
 
 
+
 /* =====================================
    DOM ELEMENTS
 ===================================== */
 
 const searchForm = document.getElementById("subjectSearchForm");
-
 const searchInput = document.getElementById("subjectSearch");
-
 const yearFilter = document.getElementById("engineeringYear");
-
 const semesterFilter = document.getElementById("semester");
-
 const subjectGrid = document.getElementById("subjectGrid");
-
 const subjectCount = document.getElementById("subjectCount");
-
 const loadingState = document.getElementById("subjectLoading");
-
 const emptyState = document.getElementById("subjectEmptyState");
-
 const errorState = document.getElementById("subjectError");
-
 const errorMessage = document.getElementById("subjectErrorMessage");
 
 
@@ -78,9 +70,7 @@ async function loadSubjects() {
         console.error("Supabase error:", error);
 
         errorMessage.textContent = error.message;
-
         errorState.hidden = false;
-
         subjectCount.textContent = "0 subjects";
 
         return;
@@ -100,12 +90,8 @@ async function loadSubjects() {
 
 function applyFilters() {
 
-    const searchValue = searchInput.value
-        .trim()
-        .toLowerCase();
-
+    const searchValue = searchInput.value.trim().toLowerCase();
     const selectedYear = yearFilter.value;
-
     const selectedSemester = semesterFilter.value;
 
     const filteredSubjects = allSubjects.filter(subject => {
@@ -122,11 +108,7 @@ function applyFilters() {
             !selectedSemester ||
             String(subject.semester) === selectedSemester;
 
-        return (
-            matchesSearch &&
-            matchesYear &&
-            matchesSemester
-        );
+        return matchesSearch && matchesYear && matchesSemester;
 
     });
 
@@ -150,7 +132,6 @@ function renderSubjects(subjects) {
     subjects.forEach(subject => {
 
         const card = document.createElement("article");
-
         card.className = "subject-card";
 
         const description = escapeHTML(
@@ -160,6 +141,8 @@ function renderSubjects(subjects) {
         const syllabus = Array.isArray(subject.syllabus)
             ? subject.syllabus
             : [];
+
+        /* BUILD INDIVIDUAL UNIT ACCORDIONS */
 
         const syllabusHTML = syllabus.length
             ? syllabus.map((unit, index) => {
@@ -184,15 +167,39 @@ function renderSubjects(subjects) {
                        </ul>`
                     : "<p>No topics added yet.</p>";
 
+                // Lab groups and project parts should not be labelled as theory units.
+                const isGroup = /^(group|part)\b/i.test(
+                    String(unit.title || "").trim()
+                );
+
+                const heading = isGroup
+                    ? unitTitle
+                    : `Unit ${unitNumber}: ${unitTitle}`;
+
                 return `
                     <div class="syllabus-unit">
-                        <h4>Unit ${unitNumber}: ${unitTitle}</h4>
-                        ${topicsHTML}
+
+                        <button
+                            type="button"
+                            class="syllabus-unit-toggle"
+                            aria-expanded="false"
+                        >
+                            <span>${heading}</span>
+                            <span class="unit-chevron">⌄</span>
+                        </button>
+
+                        <div class="syllabus-unit-content" hidden>
+                            ${topicsHTML}
+                        </div>
+
                     </div>
                 `;
 
             }).join("")
             : "<p>No syllabus has been added yet.</p>";
+
+
+        /* SUBJECT CARD HTML */
 
         card.innerHTML = `
 
@@ -230,6 +237,9 @@ function renderSubjects(subjects) {
 
         `;
 
+
+        /* OUTER SYLLABUS TOGGLE */
+
         const syllabusButton = card.querySelector(
             ".subject-card-button"
         );
@@ -250,6 +260,35 @@ function renderSubjects(subjects) {
             syllabusButton.textContent = isOpen
                 ? "Hide syllabus ↑"
                 : "View complete syllabus →";
+
+        });
+
+
+        /* INDIVIDUAL UNIT TOGGLES */
+
+        const unitButtons = card.querySelectorAll(
+            ".syllabus-unit-toggle"
+        );
+
+        unitButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const content = button.nextElementSibling;
+
+                const isOpen =
+                    button.getAttribute("aria-expanded") === "true";
+
+                button.setAttribute(
+                    "aria-expanded",
+                    String(!isOpen)
+                );
+
+                content.hidden = isOpen;
+
+                button.classList.toggle("active", !isOpen);
+
+            });
 
         });
 
@@ -290,18 +329,13 @@ function escapeHTML(value) {
 searchForm.addEventListener("submit", event => {
 
     event.preventDefault();
-
     applyFilters();
 
 });
 
-
 searchInput.addEventListener("input", applyFilters);
-
 yearFilter.addEventListener("change", applyFilters);
-
 semesterFilter.addEventListener("change", applyFilters);
-
 
 searchForm.addEventListener("reset", () => {
 
