@@ -1,28 +1,5 @@
 
 /* =====================================
-   SPPU RESOURCE HUB - SUBJECTS
-   Supabase Integration
-===================================== */
-
-import { createClient } from
-    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-
-/* =====================================
-   SUPABASE CONFIGURATION
-===================================== */
-
-const SUPABASE_URL = "https://aaowvybuurdnhjaugjqr.supabase.co";
-const SUPABASE_KEY = "sb_publishable_IC5Lui65jLhlNu5kDeVqHQ_LRO5828U";
-
-const supabase = createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-
-
-/* =====================================
    DOM ELEMENTS
 ===================================== */
 
